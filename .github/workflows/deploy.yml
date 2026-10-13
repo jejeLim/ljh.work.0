@@ -1,5 +1,6 @@
 # main 브랜치에 푸시될 때마다 빌드해서 GitHub Pages에 배포한다.
-# 저장소 Settings > Pages > Source 를 "GitHub Actions" 로 한 번만 설정하면 된다.
+# 최초 1회: 저장소 Settings > Pages > Build and deployment > Source 를 "GitHub Actions" 로 설정해야 한다.
+# (기본 GITHUB_TOKEN 으로는 Pages를 켤 수 없어 워크플로가 직접 활성화하지는 못한다)
 name: Deploy to GitHub Pages
 
 on:
@@ -21,10 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Pages가 아직 켜져 있지 않으면 자동으로 활성화한다 (Source: GitHub Actions)
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/setup-node@v4
         with:
           node-version: 22
