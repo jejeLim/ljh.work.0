@@ -1,0 +1,65 @@
+@use 'variables' as *;
+
+// 1100px 미만 (태블릿 이하)
+@mixin tablet {
+  @media (max-width: ($bp-lg - 1px)) {
+    @content;
+  }
+}
+
+// 768px 미만 (모바일)
+@mixin mobile {
+  @media (max-width: ($bp-md - 1px)) {
+    @content;
+  }
+}
+
+// 480px 미만 (소형 모바일)
+@mixin xs {
+  @media (max-width: ($bp-sm - 1px)) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+  padding-inline: $gutter-lg;
+
+  @include tablet {
+    padding-inline: $gutter-md;
+  }
+  @include mobile {
+    padding-inline: $gutter-sm;
+  }
+}
+
+@mixin reset-button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+@mixin placeholder-caption {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  font-family: $font-sans;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba($white, 0.55);
+  pointer-events: none;
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

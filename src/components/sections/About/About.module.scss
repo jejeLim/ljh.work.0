@@ -1,0 +1,351 @@
+.about {
+  background: $bg;
+  padding-top: 56px;
+
+  @include mobile {
+    padding-top: 40px;
+  }
+}
+
+.inner {
+  @include container;
+  padding-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+  min-height: 640px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+}
+
+// ── Left ────────────────────────────────────────────────
+.left {
+  position: relative;
+  border-right: 1px solid $line;
+
+  @include tablet {
+    border-right: 0;
+    border-bottom: 1px solid $line;
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  min-height: 88px;
+  padding: 16px $gutter-lg;
+  border-bottom: 1px solid $line;
+
+  @include tablet {
+    padding-inline: $gutter-md;
+    gap: 28px;
+  }
+  @include mobile {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    padding: 20px $gutter-sm;
+  }
+}
+
+.name {
+  font-family: $font-display;
+  font-size: 44px;
+  line-height: 1.1;
+  color: $ink;
+  white-space: nowrap;
+
+  @include tablet {
+    font-size: 36px;
+  }
+  @include mobile {
+    width: 100%;
+    font-size: 30px;
+  }
+}
+
+.role {
+  font-family: $font-sans;
+  font-size: 12px;
+  line-height: 1.3;
+  color: $muted-2;
+}
+
+.portraitWrap {
+  position: relative;
+  padding: 36px $gutter-lg 36px 30px;
+
+  @include tablet {
+    padding: 32px $gutter-md;
+  }
+  @include mobile {
+    padding: 24px $gutter-sm;
+  }
+}
+
+.portraitReveal {
+  width: 100%;
+}
+
+.portrait {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 540 / 480;
+  padding: 40px 56px;
+  border-radius: 260px 200px 260px 200px;
+  background: linear-gradient(138deg, #d8c3b2 0%, #6a4e40 71%);
+  color: $cream;
+  overflow: hidden;
+  transition: border-radius 1.2s $ease-out;
+
+  &:hover {
+    border-radius: 200px 260px 200px 260px;
+  }
+
+  @include tablet {
+    max-width: none;
+    aspect-ratio: 1 / 0.9;
+  }
+  @include mobile {
+    padding: 32px 40px;
+  }
+}
+
+.portraitName {
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.portraitKo {
+  margin-top: 16px;
+  font-family: $font-kr;
+  font-weight: 300;
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+.portraitMeta {
+  margin-top: 36px;
+  font-family: $font-sans;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba($white, 0.6);
+
+  @include mobile {
+    margin-top: 24px;
+  }
+}
+
+.badge {
+  position: absolute;
+  right: calc(#{$gutter-lg} + 40px);
+  bottom: 40px;
+
+  @include tablet {
+    right: $gutter-md;
+    bottom: 24px;
+    width: 96px !important;
+    height: 96px !important;
+  }
+  @include mobile {
+    right: $gutter-sm;
+    bottom: 12px;
+    width: 84px !important;
+    height: 84px !important;
+  }
+}
+
+// ── Right ───────────────────────────────────────────────
+.right {
+  position: relative;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  gap: 56px;
+  min-height: 88px;
+  padding: 0 $gutter-lg 0 40px;
+  align-items: center;
+  border-bottom: 1px solid $line;
+
+  @include tablet {
+    padding-inline: $gutter-md;
+    gap: 40px;
+  }
+  @include mobile {
+    gap: 28px;
+    padding-inline: $gutter-sm;
+    min-height: 64px;
+  }
+}
+
+.tab {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-family: $font-sans;
+  color: $stone-2;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $ink;
+  }
+}
+
+.tabActive {
+  color: $ink;
+}
+
+.tabLabel {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tabNum {
+  font-size: 10px;
+  margin-top: 1px;
+}
+
+.stage {
+  position: relative;
+  min-height: 552px;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+
+  @include tablet {
+    min-height: 520px;
+  }
+  @include mobile {
+    min-height: 440px;
+    padding: 32px $gutter-sm;
+  }
+}
+
+.blur {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 470px;
+  height: 470px;
+  transform: translate(-50%, -50%);
+  animation: breathe 7s ease-in-out infinite;
+  pointer-events: none;
+
+  @include mobile {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+.ellipse {
+  position: absolute;
+  right: 60px;
+  top: 40px;
+  width: 240px;
+  height: 300px;
+  animation: float 8s ease-in-out infinite reverse;
+  pointer-events: none;
+
+  @include mobile {
+    right: -40px;
+    width: 180px;
+    height: 220px;
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 470px;
+  text-align: center;
+  animation: fadeUp 0.7s $ease-out both;
+}
+
+.stageTitle {
+  font-family: $font-display;
+  font-size: 40px;
+  line-height: 1.1;
+  color: $ink;
+
+  @include mobile {
+    font-size: 30px;
+  }
+}
+
+.stageBody {
+  font-family: $font-kr;
+  font-size: 15px;
+  line-height: 1.6;
+  color: $text;
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.readMore {
+  margin-top: 8px;
+}
+
+// ── Floating pills ──────────────────────────────────────
+.floating {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+  z-index: 2;
+
+  span {
+    display: inline-block;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.pillA {
+  left: 110px;
+  top: 70px;
+  animation-delay: 0s;
+}
+
+.pillB {
+  right: 60px;
+  top: 150px;
+  animation-delay: 1.2s;
+}
+
+.pillC {
+  left: 120px;
+  bottom: 80px;
+  animation-delay: 2.4s;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}

@@ -1,0 +1,431 @@
+.works {
+  background: $bg;
+  padding: 40px 0 100px;
+
+  @include mobile {
+    padding: 32px 0 72px;
+  }
+}
+
+.inner {
+  @include container;
+}
+
+.title {
+  margin-top: 36px;
+  text-align: center;
+  font-family: $font-kr;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.3;
+  color: $ink;
+
+  @include mobile {
+    margin-top: 24px;
+    font-size: 26px;
+  }
+}
+
+.desc {
+  margin-top: 14px;
+  text-align: center;
+  font-family: $font-kr;
+  font-weight: 300;
+  font-size: 14px;
+  color: $muted;
+
+  @include mobile {
+    font-size: 13px;
+    padding-inline: 8px;
+  }
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+
+  @include mobile {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    margin-inline: -$gutter-sm;
+    padding-inline: $gutter-sm;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+// ── Featured slider ─────────────────────────────────────
+.slider {
+  margin-top: 46px;
+
+  @include mobile {
+    margin-top: 28px;
+  }
+}
+
+.sliderInner {
+  position: relative;
+  height: 640px;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  color: $white;
+
+  @include tablet {
+    height: 520px;
+  }
+  @include mobile {
+    height: 440px;
+    border-radius: 18px;
+  }
+}
+
+.slideBg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: $ink-2;
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 1s ease,
+    transform 6s linear;
+}
+
+.slideBgActive {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slideImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+// 이미지 위 어두운 그라디언트 (텍스트 가독성)
+.slideShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba($ink-2, 0.35) 0%, rgba($ink-2, 0.55) 55%, rgba($ink-2, 0.85) 100%),
+    rgba($ink-2, 0.25);
+}
+
+.sliderGlow {
+  position: absolute;
+  left: 50%;
+  bottom: -140px;
+  width: 820px;
+  height: 600px;
+  max-width: none;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation: breathe 8s ease-in-out infinite;
+  pointer-events: none;
+
+  @include mobile {
+    width: 520px;
+    height: 380px;
+    bottom: -80px;
+  }
+}
+
+.slideContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 80px;
+  text-align: center;
+  color: $white;
+  animation: fadeUp 0.9s $ease-out both;
+
+  @include mobile {
+    padding: 0 48px;
+  }
+}
+
+.featLabel {
+  font-family: $font-sans;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: rgba($white, 0.6);
+}
+
+.featTitle {
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 1.2;
+
+  @include tablet {
+    font-size: 42px;
+  }
+  @include mobile {
+    font-size: 32px;
+  }
+}
+
+.featUnderline {
+  margin-top: 6px;
+  animation: drawIn 1.2s $ease-out 0.3s both;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba($white, 0.5);
+  border-radius: 50%;
+  font-family: $font-sans;
+  font-size: 22px;
+  line-height: 1;
+  color: $white;
+  transition:
+    background 0.3s ease,
+    transform 0.4s $ease-out;
+
+  &:hover {
+    background: rgba($white, 0.15);
+    transform: scale(1.08);
+  }
+
+  @include mobile {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+.arrowPrev {
+  left: 28px;
+
+  @include mobile {
+    left: 12px;
+  }
+}
+
+.arrowNext {
+  right: 28px;
+
+  @include mobile {
+    right: 12px;
+  }
+}
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  display: flex;
+  gap: 10px;
+  translate: -50% 0;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba($white, 0.5);
+  transition:
+    background 0.3s ease,
+    transform 0.3s $ease-out,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.dotActive {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.2px $white;
+  transform: scale(1.15);
+}
+
+// ── Masonry grid ────────────────────────────────────────
+.masonry {
+  columns: 3;
+  column-gap: 24px;
+  margin-top: 60px;
+
+  @include tablet {
+    columns: 2;
+  }
+  @include mobile {
+    columns: 1;
+    margin-top: 40px;
+  }
+}
+
+.card {
+  break-inside: avoid;
+  margin-bottom: 40px;
+
+  @include mobile {
+    margin-bottom: 32px;
+  }
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  &:hover {
+    .thumb {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 50px -30px rgba($ink, 0.45);
+    }
+    .thumbOverlay {
+      opacity: 1;
+      transform: none;
+    }
+    .cardArrow {
+      background: $ink-2;
+      border-color: $ink-2;
+
+      img {
+        transform: rotate(45deg);
+        filter: invert(1);
+      }
+    }
+  }
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: $cream;
+  transition:
+    transform 0.6s $ease-out,
+    box-shadow 0.6s ease;
+
+  @include mobile {
+    height: auto !important;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.2s $ease-out;
+
+  .cardLink:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.thumbNum {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba($ink, 0.5);
+  border-radius: 50%;
+  background: rgba($white, 0.7);
+  font-family: $font-sans;
+  font-size: 12px;
+  font-weight: 500;
+  color: $ink;
+}
+
+.thumbOverlay {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba($white, 0.9);
+  font-family: $font-sans;
+  font-size: 11px;
+  font-weight: 500;
+  color: $ink;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s $ease-out;
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cardTitle {
+  font-family: $font-kr;
+  font-weight: 500;
+  font-size: 17px;
+  color: $ink;
+}
+
+.cardMeta {
+  margin-top: 4px;
+  font-family: $font-sans;
+  font-size: 12px;
+  color: $gray;
+}
+
+.cardArrow {
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.moreBtn {
+  font-size: 14px;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes drawIn {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

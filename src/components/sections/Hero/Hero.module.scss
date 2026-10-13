@@ -1,0 +1,243 @@
+.hero {
+  padding-top: 98px;
+  background: $bg;
+
+  @include tablet {
+    padding-top: 84px;
+  }
+  @include mobile {
+    padding-top: 72px;
+  }
+}
+
+.inner {
+  @include container;
+  position: relative;
+}
+
+// ── Arch ────────────────────────────────────────────────
+.arch {
+  position: relative;
+  width: calc(100% - 120px);
+  max-width: 1200px;
+  height: 700px;
+  margin: 0 auto;
+  border-radius: 600px 600px 0 0;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(100% 0 0 0 round 600px 600px 0 0);
+  transition: clip-path 1.4s $ease-out 0.1s;
+
+  .ready & {
+    clip-path: inset(0 0 0 0 round 600px 600px 0 0);
+  }
+
+  @include tablet {
+    width: 100%;
+    height: 620px;
+  }
+  @include mobile {
+    height: 560px;
+    border-radius: 200px 200px 0 0;
+    clip-path: inset(100% 0 0 0 round 200px 200px 0 0);
+
+    .ready & {
+      clip-path: inset(0 0 0 0 round 200px 200px 0 0);
+    }
+  }
+}
+
+.archBg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(150deg, #c9a285 0%, #2a1e19 71%);
+  will-change: transform;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  width: 940px;
+  height: 940px;
+  max-width: none;
+  transform: translateX(-50%);
+  animation: float 9s ease-in-out infinite;
+  pointer-events: none;
+
+  @include mobile {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: 128px;
+  line-height: 1.2;
+  color: $white;
+  letter-spacing: 0.01em;
+
+  span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.4em) rotate(3deg);
+    transition:
+      opacity 0.8s $ease-out,
+      transform 0.9s $ease-out;
+  }
+
+  .ready & span {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include tablet {
+    top: 220px;
+    font-size: 96px;
+  }
+  @include mobile {
+    top: 190px;
+    font-size: 64px;
+  }
+}
+
+.sub {
+  position: absolute;
+  top: 420px;
+  left: 0;
+  width: 100%;
+  padding-inline: 24px;
+  text-align: center;
+  font-family: $font-kr;
+  font-weight: 300;
+  font-size: 16px;
+  color: rgba($white, 0.85);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.9s $ease-out 1.2s,
+    transform 0.9s $ease-out 1.2s;
+
+  .ready & {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include tablet {
+    top: 360px;
+  }
+  @include mobile {
+    top: 300px;
+    font-size: 14px;
+  }
+}
+
+.scroll {
+  position: absolute;
+  left: 0;
+  bottom: 48px;
+  width: 100%;
+  text-align: center;
+  font-family: $font-sans;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba($white, 0.8);
+  opacity: 0;
+  transition: opacity 0.9s ease 1.6s;
+
+  .ready & {
+    opacity: 1;
+  }
+}
+
+.chev {
+  display: inline-block;
+  margin-left: 4px;
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+.caption {
+  @include placeholder-caption;
+}
+
+// ── Explore badge ───────────────────────────────────────
+.badge {
+  position: absolute;
+  right: calc(#{$gutter-lg} + 170px);
+  top: 452px;
+  opacity: 0;
+  transition: opacity 0.8s ease 1.5s;
+
+  .ready & {
+    opacity: 1;
+  }
+
+  @include tablet {
+    right: $gutter-md;
+    top: 480px;
+    width: 104px !important;
+    height: 104px !important;
+  }
+  @include mobile {
+    display: none;
+  }
+}
+
+// ── Foot ────────────────────────────────────────────────
+.foot {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 34px 0 60px;
+
+  @include mobile {
+    padding: 24px 0 40px;
+  }
+}
+
+.meta {
+  font-family: $font-sans;
+  font-size: 13px;
+  color: $muted-2;
+  text-align: center;
+
+  @include mobile {
+    font-size: 12px;
+  }
+}
+
+.sideLinks {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 15px;
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $brown;
+    }
+  }
+
+  @include mobile {
+    display: none;
+  }
+}

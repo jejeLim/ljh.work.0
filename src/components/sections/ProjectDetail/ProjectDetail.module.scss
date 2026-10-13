@@ -1,0 +1,400 @@
+.detail {
+  background: $bg;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.inner {
+  @include container;
+  padding-bottom: 36px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 640px 1fr;
+  gap: 0;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Main image ──────────────────────────────────────────
+.mainWrap {
+  position: relative;
+  border-right: 1px solid $line;
+  margin-right: 80px;
+  padding-right: 80px;
+
+  @include tablet {
+    border-right: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-inline: $gutter-md;
+  }
+  @include mobile {
+    padding-inline: $gutter-sm;
+  }
+}
+
+.mainStack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 700px;
+  border-radius: 0 48px 0 0;
+  overflow: hidden;
+  background: $cream;
+  cursor: zoom-in;
+
+  &:hover .zoomHint {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include tablet {
+    height: 460px;
+    border-radius: 24px;
+  }
+  @include mobile {
+    height: 320px;
+    border-radius: 18px;
+  }
+}
+
+.main {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 0.9s ease,
+    transform 1.2s $ease-out;
+}
+
+.mainActive {
+  opacity: 1;
+  transform: none;
+}
+
+.mainImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.mainNum {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid $ink;
+  border-radius: 50%;
+  background: rgba($white, 0.8);
+  font-family: $font-sans;
+  font-size: 13px;
+  font-weight: 500;
+  color: $ink;
+}
+
+// ── Info ────────────────────────────────────────────────
+.info {
+  padding: 0 $gutter-lg 0 0;
+  margin-left: -40px;
+
+  @include tablet {
+    margin-left: 0;
+    padding: 36px $gutter-md 0;
+  }
+  @include mobile {
+    padding: 28px $gutter-sm 0;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rule {
+  height: 1px;
+  background: $line;
+  margin: 22px 0 44px -40px;
+
+  @include tablet {
+    margin: 20px 0 32px;
+  }
+}
+
+.body {
+  animation: fadeUp 0.8s $ease-out both;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.kicker {
+  margin-bottom: 10px;
+  font-family: $font-kr;
+  font-size: 13px;
+  font-weight: 500;
+  color: $gray;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 50px;
+  line-height: 1.1;
+  color: $ink;
+
+  @include tablet {
+    font-size: 40px;
+  }
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.navBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid $line-2;
+  border-radius: 50%;
+  font-family: $font-sans;
+  font-size: 20px;
+  line-height: 1;
+  color: $stone;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.4s $ease-out;
+
+  &:hover {
+    background: $ink-2;
+    border-color: $ink-2;
+    color: $white;
+    transform: scale(1.06);
+  }
+
+  @include mobile {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+}
+
+.navBtnDark {
+  border-color: $ink;
+  color: $ink;
+}
+
+// ── Project list (PDF와 같은 번호 목록) ─────────────────
+.list {
+  max-width: 520px;
+  margin-top: 32px;
+
+  @include mobile {
+    margin-top: 24px;
+  }
+}
+
+.group {
+  & + & {
+    margin-top: 24px;
+  }
+
+  ol {
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid $line;
+
+    &:first-child {
+      border-top: 1px solid $line;
+    }
+  }
+}
+
+.groupTitle {
+  margin-bottom: 8px;
+  font-family: $font-kr;
+  font-size: 13px;
+  font-weight: 700;
+  color: $ink;
+}
+
+.itemNum {
+  flex-shrink: 0;
+  width: 24px;
+  padding-top: 2px;
+  font-family: $font-sans;
+  font-size: 11px;
+  color: $gray;
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.itemTitle {
+  font-family: $font-kr;
+  font-size: 15px;
+  color: $text;
+  line-height: 1.5;
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.itemSub {
+  font-family: $font-kr;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: $gray;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
+  margin: 36px 0 0;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  dt {
+    font-family: $font-sans;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: $gray;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-kr;
+    font-weight: 500;
+    font-size: 14px;
+    color: $ink;
+  }
+
+  @include mobile {
+    gap: 16px 32px;
+    margin-top: 28px;
+  }
+}
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+
+  li {
+    flex: 0 1 184px;
+    animation: fadeUp 0.7s $ease-out both;
+  }
+
+  @include mobile {
+    gap: 10px;
+    margin-top: 32px;
+
+    li {
+      flex: 1 1 calc(33.333% - 10px);
+    }
+  }
+}
+
+.thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 184 / 150;
+  border-radius: 16px;
+  overflow: hidden;
+  background: $cream;
+  cursor: zoom-in;
+  transition:
+    transform 0.6s $ease-out,
+    box-shadow 0.6s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s $ease-out;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -24px rgba($ink, 0.45);
+
+    img {
+      transform: scale(1.05);
+    }
+    .zoomHint {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+// 호버 시 나타나는 확대 아이콘
+.zoomHint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba($white, 0.9);
+  font-size: 14px;
+  color: $ink;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s $ease-out;
+  pointer-events: none;
+
+  .mainStack & {
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}

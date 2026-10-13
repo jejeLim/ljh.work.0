@@ -1,0 +1,125 @@
+.marquee {
+  position: relative;
+  padding: 24px 0;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+  background: $bg;
+  overflow: hidden;
+
+  // 양 끝 페이드
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, $bg, transparent);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, $bg, transparent);
+  }
+
+  @include tablet {
+    padding: 18px 0;
+  }
+  @include mobile {
+    padding: 14px 0;
+
+    &::before,
+    &::after {
+      width: 40px;
+    }
+  }
+}
+
+.mover {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+
+  .marquee:hover & {
+    animation-play-state: paused;
+  }
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding-right: 36px;
+
+  @include mobile {
+    gap: 20px;
+    padding-right: 20px;
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+
+  @include mobile {
+    gap: 20px;
+  }
+}
+
+.word {
+  font-family: $font-display;
+  font-size: 76px;
+  line-height: 1.2;
+  color: $ink-2;
+  white-space: nowrap;
+
+  @include tablet {
+    font-size: 56px;
+  }
+  @include mobile {
+    font-size: 40px;
+  }
+}
+
+.plus {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid $stone;
+  border-radius: 50%;
+  font-family: $font-sans;
+  font-size: 18px;
+  line-height: 1;
+  color: $gray;
+  animation: spin 12s linear infinite;
+
+  @include mobile {
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+  }
+}
+
+.slash {
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: 70px;
+  color: $stone;
+
+  @include tablet {
+    font-size: 50px;
+  }
+  @include mobile {
+    font-size: 36px;
+  }
+}

@@ -1,0 +1,216 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: 88px;
+  transition:
+    background 0.4s ease,
+    height 0.4s $ease-out,
+    box-shadow 0.4s ease;
+
+  @include tablet {
+    height: 72px;
+  }
+  @include mobile {
+    height: 64px;
+  }
+}
+
+.scrolled {
+  height: 68px;
+  background: rgba($bg, 0.82);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba($ink, 0.06);
+
+  @include mobile {
+    height: 60px;
+  }
+}
+
+.inner {
+  @include container;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: $font-display;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: $ink;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.menuBtn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: $font-sans;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: $ink;
+  z-index: 2;
+
+  @include mobile {
+    position: static;
+    translate: none;
+    order: 3;
+  }
+}
+
+.menuText {
+  @include mobile {
+    display: none;
+  }
+}
+
+.menuIcon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  transition: transform 0.5s $ease-out;
+
+  .menuBtn:hover & {
+    transform: rotate(90deg);
+  }
+  .open & {
+    transform: rotate(90deg) scale(0.9);
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.contact {
+  padding-block: 7px;
+}
+
+.lang {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  transition: transform 0.4s $ease-out;
+
+  &:hover {
+    transform: rotate(20deg);
+  }
+}
+
+// ── Fullscreen overlay menu ─────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 88px;
+  background: $bg;
+  clip-path: circle(0% at 50% 44px);
+  transition: clip-path 0.8s $ease-in-out;
+  pointer-events: none;
+
+  @include mobile {
+    padding-top: 64px;
+    clip-path: circle(0% at calc(100% - 32px) 32px);
+  }
+}
+
+.overlayOpen {
+  clip-path: circle(150% at 50% 44px);
+  pointer-events: auto;
+
+  @include mobile {
+    clip-path: circle(150% at calc(100% - 32px) 32px);
+  }
+
+  .navList li {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.navList {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  li {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s $ease-out,
+      transform 0.6s $ease-out;
+  }
+
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid $line;
+    transition: padding-left 0.4s $ease-out;
+
+    &:hover {
+      padding-left: 16px;
+
+      .navLabel {
+        color: $brown;
+      }
+    }
+  }
+}
+
+.navNum {
+  font-family: $font-sans;
+  font-size: 12px;
+  color: $gray;
+}
+
+.navLabel {
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 1.1;
+  color: $ink;
+  transition: color 0.3s ease;
+}
+
+.overlayFoot {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 48px;
+  font-family: $font-sans;
+  font-size: 13px;
+  color: $muted-2;
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

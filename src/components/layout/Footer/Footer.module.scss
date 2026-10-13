@@ -1,0 +1,172 @@
+.footer {
+  background: $ink-2;
+  color: $cream;
+  overflow: hidden;
+}
+
+.inner {
+  @include container;
+  padding-top: 60px;
+  padding-bottom: 40px;
+
+  @include mobile {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  font-family: $font-serif;
+  font-weight: 300;
+  font-size: clamp(64px, 10.4vw, 150px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.line1 {
+  display: block;
+  color: $cream;
+}
+
+.line2 {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: $gold;
+  margin-left: 26%;
+  margin-top: -0.05em;
+
+  @include mobile {
+    margin-left: 16%;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 64px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 48px;
+  }
+}
+
+.email {
+  position: relative;
+  font-family: $font-sans;
+  font-size: 22px;
+  color: $cream;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $gold;
+  }
+
+  @include mobile {
+    font-size: 18px;
+  }
+}
+
+.cta {
+  font-size: 14px;
+}
+
+.rule {
+  height: 1px;
+  background: rgba($white, 0.12);
+  margin-top: 40px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  font-family: $font-sans;
+  font-size: 13px;
+  color: $sand;
+
+  li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  a {
+    position: relative;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background: $gold;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s $ease-out;
+    }
+
+    &:hover {
+      color: $cream;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  @include mobile {
+    gap: 20px;
+  }
+}
+
+.contactLabel {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: $gray;
+}
+
+.contactValue {
+  color: $sand;
+}
+
+.contactNote {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba($white, 0.1);
+  font-size: 10px;
+  color: $sand;
+}
+
+.copy {
+  font-family: $font-sans;
+  font-size: 12px;
+  color: $gray;
+}

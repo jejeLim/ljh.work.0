@@ -1,0 +1,151 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 72px 96px;
+  background: rgba($ink-2, 0.92);
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease both;
+
+  @include tablet {
+    padding: 64px 72px;
+  }
+  @include mobile {
+    padding: 56px 12px 72px;
+  }
+}
+
+.figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  cursor: default;
+}
+
+.img {
+  display: block;
+  max-width: min(1200px, 100%);
+  max-height: calc(100vh - 200px);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 40px 80px -30px rgba(#000, 0.6);
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 0.5s $ease-out,
+    transform 0.6s $ease-out;
+
+  @include mobile {
+    max-height: calc(100vh - 150px);
+    border-radius: 8px;
+  }
+}
+
+.imgLoaded {
+  opacity: 1;
+  transform: none;
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: $font-kr;
+  font-size: 13px;
+  color: $sand;
+}
+
+.counter {
+  font-family: $font-sans;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: $gray;
+}
+
+// ── Controls ────────────────────────────────────────────
+.close,
+.nav {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba($white, 0.35);
+  border-radius: 50%;
+  color: $white;
+  font-family: $font-sans;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.4s $ease-out,
+    border-color 0.3s ease;
+
+  &:hover {
+    background: rgba($white, 0.14);
+    border-color: rgba($white, 0.7);
+    transform: scale(1.06);
+  }
+}
+
+.close {
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+
+  @include mobile {
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+}
+
+.nav {
+  top: 50%;
+  translate: 0 -50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+
+  @include mobile {
+    top: auto;
+    bottom: 16px;
+    translate: none;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.navPrev {
+  left: 24px;
+
+  @include mobile {
+    left: calc(50% - 52px);
+  }
+}
+
+.navNext {
+  right: 24px;
+
+  @include mobile {
+    right: calc(50% - 52px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

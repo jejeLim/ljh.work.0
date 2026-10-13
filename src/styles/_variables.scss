@@ -1,0 +1,41 @@
+// ── Colors ──────────────────────────────────────────────
+$bg: #faf8f5;
+$bg-alt: #f2eeea;
+$cream: #f3ece4;
+$ink: #1e1a18;
+$ink-2: #2b2220;
+$text: #3a322e;
+$muted: #5e5550;
+$muted-2: #6e655e;
+$gray: #8a817a;
+$line: #e4dcd3;
+$line-2: #d9d0c7;
+$line-3: #eae3dc;
+$stone: #b9aea5;
+$stone-2: #c2b9b1;
+$sand: #d9cfc5;
+$gold: #c8a26b;
+$brown: #5a2a1e;
+$white: #fff;
+
+// ── Typography ──────────────────────────────────────────
+$font-display: 'Cinzel', 'Noto Sans KR', serif;
+$font-serif: 'Cormorant Garamond', 'Noto Serif KR', serif;
+$font-sans: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
+$font-kr: 'Noto Sans KR', 'Inter', system-ui, sans-serif;
+
+// ── Layout ──────────────────────────────────────────────
+$max-width: 1440px;
+$gutter-lg: 60px;
+$gutter-md: 40px;
+$gutter-sm: 20px;
+
+// ── Breakpoints (max-width) ─────────────────────────────
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1100px;
+
+// ── Motion ──────────────────────────────────────────────
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+$dur: 0.9s;
