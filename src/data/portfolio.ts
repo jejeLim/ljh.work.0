@@ -79,8 +79,8 @@ export const WEBSITES: WebsiteInfo[] = [
   {
     id: 'a',
     name: 'Corazon',
-    kicker: 'Real Estate Platform',
-    desc: '프리즘 라이트와 다크 글래스를 이미지 언어로 삼은 부동산 플랫폼 랜딩페이지. 매물 탭·캐러셀, 타임라인, 후기 슬라이더, 서비스 카드까지 인터랙션을 직접 구현했습니다.',
+    kicker: 'Landing Page Sample',
+    desc: '프리즘 라이트와 다크 글래스를 이미지 언어로 삼은 랜딩페이지 샘플. 리스팅 탭·캐러셀, 타임라인, 후기 슬라이더, 서비스 카드까지 인터랙션을 직접 구현했습니다.',
     tags: ['Desktop 1440', 'Tablet 834', 'Mobile 390', 'Dark Glass', 'Prism Light'],
     href: './sites/a/',
     caseHref: './case/a/',
