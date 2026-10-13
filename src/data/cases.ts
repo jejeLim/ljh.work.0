@@ -15,8 +15,11 @@ import cMobile from '@/assets/sites/c-mobile.jpg'
 import dDesktop from '@/assets/sites/d.jpg'
 import dTablet from '@/assets/sites/d-tablet.jpg'
 import dMobile from '@/assets/sites/d-mobile.jpg'
+import eDesktop from '@/assets/sites/e.jpg'
+import eTablet from '@/assets/sites/e-tablet.jpg'
+import eMobile from '@/assets/sites/e-mobile.jpg'
 
-export type CaseId = 'a' | 'b' | 'c' | 'd'
+export type CaseId = 'a' | 'b' | 'c' | 'd' | 'e'
 
 export interface ColorToken {
   name: string
@@ -389,6 +392,84 @@ export const CASES: CaseStudyInfo[] = [
         'split 섹션은 모바일에서 사진 → 카피 순서로 세로 배치',
         '데스크톱 전용 장식(d-only)은 모바일에서 숨김',
         '마퀴와 캐러셀은 터치에서도 자연스럽게 흐르도록 overflow 처리',
+      ],
+    },
+  },
+
+  // ── E · olea Skincare ─────────────────────────────────
+  {
+    id: 'e',
+    num: '05',
+    name: 'olea Skincare',
+    kicker: '스킨케어 브랜드 쇼핑',
+    tagline: '올리브에서 시작한 클린 스킨케어. 세이지 그린과 종이 톤의 둥근 카드 위에서 제품과 브랜드 철학이 천천히 드러나는 쇼핑 랜딩페이지.',
+    accent: '#8C977C',
+    accent2: '#2E3424',
+    meta: [
+      { label: 'Type', value: '스킨케어 쇼핑 랜딩페이지' },
+      { label: 'Role', value: 'Figma 디자인 · 퍼블리싱 · 인터랙션' },
+      { label: 'Breakpoints', value: '1099px · 599px' },
+      { label: 'Stack', value: 'HTML · CSS · JS → React 변환' },
+    ],
+    fonts: ['Playfair Display 400 · 500 · Italic', 'Raleway 400 · 500', 'Inter 400 · 500', 'Noto Sans KR 400 · 500'],
+    fontLink: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Raleway:wght@400;500&family=Inter:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap',
+    concept: {
+      title: 'Calm skin & hair · Sage green · Rounded cards',
+      body: [
+        '"New philosophy of self-care: calm skin & hair"라는 브랜드 문장에 맞춰, 화면 전체를 차분한 종이색(#E7E2DC) 바탕과 세이지 그린 포인트로만 구성했습니다. 모든 콘텐츠는 모서리가 둥근 카드(--R 28px) 안에 담기고, 카드 사이 간격(--G 24px)이 레이아웃의 유일한 리듬이 됩니다.',
+        '첫 진입 시 잉크색 프리로더가 열리며 로고가 드러나고, 헤드라인은 글자 단위로 올라옵니다. 카테고리 타일은 호버하면 옆으로 펼쳐지고, 제품 카드는 마우스를 따라 기울어집니다. 모션은 모두 spring 이징으로 부드럽게 맞췄습니다.',
+      ],
+      keywords: ['Clean Beauty', 'Sage Green', 'Rounded Cards', 'Preloader', 'Spring Motion'],
+      layout: [
+        '종이색 바탕 위에 카드(--card)를 쌓는 베이지 카드 그리드',
+        '카드 반지름 --R 28px, 간격 --G 24px, 패딩 --P 72px을 변수로 통일',
+        'Hero → Philosophy → Catalog → Care → New → Product → Footer 순서의 쇼핑 흐름',
+        '프리로더, 글자 등장, 타일 펼침, 틸트, 세일 배지 회전 등 모션은 spring 이징으로 통일',
+      ],
+    },
+    colors: [
+      { name: 'Out', value: '#E7E2DC', role: '페이지 배경', light: true },
+      { name: 'Card', value: '#F2EFEA', role: '카드 표면', light: true },
+      { name: 'White', value: '#FFFFFF', role: '제품 카드 · 버튼', light: true },
+      { name: 'Ink', value: '#2E3424', role: '본문 · 프리로더 · 다크 카드' },
+      { name: 'Sage', value: '#8C977C', role: '포인트 · 세이지 필 버튼', light: true },
+      { name: 'Sage Light', value: '#A9B29B', role: '호버 · 보조 포인트', light: true },
+      { name: 'Black', value: '#141414', role: '타일 라벨 · 가격' },
+      { name: 'Muted', value: '#6B6B63', role: '보조 텍스트' },
+      { name: 'Line', value: '#D9D4CC', role: '태그 · 구분선', light: true },
+    ],
+    type: [
+      { name: 'Logo · Playfair Display', sample: 'olea', family: "'Playfair Display'", size: 44, weight: 500 },
+      { name: 'Heading · Raleway 500', sample: 'New philosophy of self-care: calm skin & hair', family: 'Raleway', size: 30, weight: 500, letterSpacing: '-0.01em' },
+      { name: 'Accent · Playfair Italic', sample: 'Pure care by nature', family: "'Playfair Display'", size: 26, weight: 400, italic: true },
+      { name: 'Body · Inter 14', sample: '올리브에서 시작한 클린 스킨케어. 매일의 피부에 차분한 균형을.', family: 'Inter', size: 14, weight: 400 },
+      { name: 'Label 14 · ( body )', sample: '( body )  ( face )  ( hair )', family: 'Inter', size: 14, weight: 500 },
+    ],
+    components: [
+      { name: 'Preloader', desc: '잉크색 전체 화면이 clip-path로 열리며 로고를 드러내는 진입 연출(pre · pre-in).', usage: '첫 진입' },
+      { name: 'Card', desc: '--R 반지름의 둥근 컨테이너. 사진 카드(ph), 텍스트 카드, 다크 카드가 같은 규칙을 공유합니다.', usage: '모든 섹션' },
+      { name: 'Pill Button', desc: 'pill · pill-line(아웃라인) · pill-sage(세이지) 세 변형의 알약 버튼.', usage: 'Add to bag, More about olea, Learn more, Buy now' },
+      { name: 'Category Tile', desc: '호버하면 flex-grow로 옆으로 펼쳐지며 설명(more)이 나타나는 타일.', usage: 'Catalog ( body · face · hair · other )' },
+      { name: 'Sale Badge', desc: '3D 회전(perspective)하는 세일 -15% 배지와 가격 전후 표시.', usage: 'Hero 제품 카드' },
+      { name: 'Tilt Card', desc: '포인터 위치에 따라 기울어지는 제품 카드(tilt · tilt-in).', usage: 'Philosophy, Product' },
+      { name: 'Char Reveal', desc: '글자(ch)를 하나씩 감싸 순서대로 올라오게 하는 헤드라인 등장.', usage: 'Hero 헤드라인' },
+      { name: 'Tag', desc: '반투명 흰 배경의 작은 필 태그.', usage: '제품 속성(Products · Aesthetics · Comfort)' },
+      { name: 'Bag', desc: '담기 수량 배지(n)와 토스트 메시지(bag-msg)가 있는 장바구니 버튼.', usage: '헤더, Add to bag' },
+      { name: 'Nav & Mobile Menu', desc: '스크롤 프로그레스(prog), 메뉴 버튼, 전체화면 모바일 메뉴(mnav).', usage: '헤더' },
+    ],
+    sections: ['Preloader', 'Hero', 'Philosophy', 'Catalog', 'Care', 'New', 'Product', 'Footer'],
+    responsive: {
+      intro: '카드 그리드가 기본 구조라 분기점마다 간격·반지름·패딩 변수만 줄이고, 카드 열 수를 3 → 2 → 1로 바꿨습니다.',
+      breakpoints: [
+        { label: 'Desktop', width: 1440, image: eDesktop, notes: ['패딩 72px, 간격 24px, 반지름 28px', '히어로 2열 카드 + 세일 배지', '카테고리 타일 4개 가로 펼침'] },
+        { label: 'Tablet', width: 834, image: eTablet, notes: ['패딩 40px, 간격 16px, 반지름 22px', '헤더 링크 → 메뉴 버튼', '카드 2열'] },
+        { label: 'Mobile', width: 390, image: eMobile, notes: ['패딩 20px, 간격 10px, 반지름 20px', '카드 1열 세로 스택', '타일은 세로로 쌓임'] },
+      ],
+      rules: [
+        '--G · --R · --P 세 변수만 분기점에서 교체해 카드 리듬 유지',
+        '헤드라인은 clamp(30px, 3.2vw, 46px)로 유동 축소',
+        '호버 기반 모션(타일 펼침, 틸트)은 터치 기기에서 기본 상태로 표시',
+        '프리로더와 글자 등장은 reduce-motion 설정 시 생략',
       ],
     },
   },

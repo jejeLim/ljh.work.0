@@ -18,7 +18,7 @@ export default defineConfig({
       },
     },
   },
-  // 멀티 페이지: 메인 포트폴리오 + 랜딩페이지 4종 + 케이스 스터디 4종
+  // 멀티 페이지: 메인 포트폴리오 + 랜딩페이지 5종 + 케이스 스터디 5종
   build: {
     rollupOptions: {
       input: {
@@ -27,10 +27,12 @@ export default defineConfig({
         siteB: fileURLToPath(new URL('./sites/b/index.html', import.meta.url)),
         siteC: fileURLToPath(new URL('./sites/c/index.html', import.meta.url)),
         siteD: fileURLToPath(new URL('./sites/d/index.html', import.meta.url)),
+        siteE: fileURLToPath(new URL('./sites/e/index.html', import.meta.url)),
         caseA: fileURLToPath(new URL('./case/a/index.html', import.meta.url)),
         caseB: fileURLToPath(new URL('./case/b/index.html', import.meta.url)),
         caseC: fileURLToPath(new URL('./case/c/index.html', import.meta.url)),
         caseD: fileURLToPath(new URL('./case/d/index.html', import.meta.url)),
+        caseE: fileURLToPath(new URL('./case/e/index.html', import.meta.url)),
       },
     },
   },

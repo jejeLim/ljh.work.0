@@ -24,6 +24,7 @@ import siteA from '@/assets/sites/a.jpg'
 import siteB from '@/assets/sites/b.jpg'
 import siteC from '@/assets/sites/c.jpg'
 import siteD from '@/assets/sites/d.jpg'
+import siteE from '@/assets/sites/e.jpg'
 
 // ── 기본 정보 ─────────────────────────────────────────────
 export const PROFILE = {
@@ -61,7 +62,7 @@ export const NAV_LINKS = [
 
 // ── Websites (피그마 시안 → 직접 코딩한 랜딩페이지, React로 변환) ──
 export interface WebsiteInfo {
-  id: 'a' | 'b' | 'c' | 'd'
+  id: 'a' | 'b' | 'c' | 'd' | 'e'
   name: string
   kicker: string
   desc: string
@@ -116,6 +117,16 @@ export const WEBSITES: WebsiteInfo[] = [
     href: './sites/d/',
     caseHref: './case/d/',
     image: siteD,
+  },
+  {
+    id: 'e',
+    name: 'olea Skincare',
+    kicker: '스킨케어 브랜드 쇼핑',
+    desc: '세이지 그린과 종이 톤 위에 둥근 카드를 쌓은 스킨케어 쇼핑 랜딩페이지. 프리로더, 글자 단위 등장, 펼쳐지는 카테고리 타일, 틸트 카드 등 부드러운 모션을 더했습니다.',
+    tags: ['Shop', 'Sage Green', 'Rounded Cards', 'Motion'],
+    href: './sites/e/',
+    caseHref: './case/e/',
+    image: siteE,
   },
 ]
 
