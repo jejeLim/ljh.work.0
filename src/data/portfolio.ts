@@ -25,6 +25,8 @@ import siteB from '@/assets/sites/b.jpg'
 import siteC from '@/assets/sites/c.jpg'
 import siteD from '@/assets/sites/d.jpg'
 import siteE from '@/assets/sites/e.jpg'
+import siteF from '@/assets/sites/f.jpg'
+import siteG from '@/assets/sites/g.jpg'
 
 // ── 기본 정보 ─────────────────────────────────────────────
 export const PROFILE = {
@@ -62,7 +64,7 @@ export const NAV_LINKS = [
 
 // ── Websites (피그마 시안 → 직접 코딩한 랜딩페이지, React로 변환) ──
 export interface WebsiteInfo {
-  id: 'a' | 'b' | 'c' | 'd' | 'e'
+  id: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'
   name: string
   kicker: string
   desc: string
@@ -89,6 +91,26 @@ export const WEBSITES: WebsiteInfo[] = [
     featured: true,
   },
   {
+    id: 'd',
+    name: 'ONDO Roasters',
+    kicker: '커피 로스터리 쇼핑',
+    desc: '캔 커피와 원두를 판매하는 로스터리 쇼핑 랜딩페이지. 여백 중심의 에디토리얼 레이아웃으로 제품을 돋보이게 했습니다.',
+    tags: ['Shop', 'Editorial', 'Minimal'],
+    href: './sites/d/',
+    caseHref: './case/d/',
+    image: siteD,
+  },
+  {
+    id: 'e',
+    name: 'olea Skincare',
+    kicker: '스킨케어 브랜드 쇼핑',
+    desc: '세이지 그린과 종이 톤 위에 둥근 카드를 쌓은 스킨케어 쇼핑 랜딩페이지. 프리로더, 글자 단위 등장, 펼쳐지는 카테고리 타일, 틸트 카드 등 부드러운 모션을 더했습니다.',
+    tags: ['Shop', 'Sage Green', 'Rounded Cards', 'Motion'],
+    href: './sites/e/',
+    caseHref: './case/e/',
+    image: siteE,
+  },
+  {
     id: 'b',
     name: 'TREAD9',
     kicker: '타이어 교체 서비스',
@@ -109,24 +131,24 @@ export const WEBSITES: WebsiteInfo[] = [
     image: siteC,
   },
   {
-    id: 'd',
-    name: 'ONDO Roasters',
-    kicker: '커피 로스터리 쇼핑',
-    desc: '캔 커피와 원두를 판매하는 로스터리 쇼핑 랜딩페이지. 여백 중심의 에디토리얼 레이아웃으로 제품을 돋보이게 했습니다.',
-    tags: ['Shop', 'Editorial', 'Minimal'],
-    href: './sites/d/',
-    caseHref: './case/d/',
-    image: siteD,
+    id: 'f',
+    name: 'MOVA 오토리스',
+    kicker: '수입차 리스 · 장기렌트 견적',
+    desc: '인디고 블루 포인트로 신뢰감을 잡은 수입차 오토리스 · 장기렌트 랜딩페이지. 조건에 따라 굴러가는 월 대여료 계산기, 차량 색상 스왑, 완성도 게이지가 있는 견적 폼으로 전환 흐름을 만들었습니다.',
+    tags: ['Auto Lease', 'Indigo', 'Calculator', 'Form UX'],
+    href: './sites/f/',
+    caseHref: './case/f/',
+    image: siteF,
   },
   {
-    id: 'e',
-    name: 'olea Skincare',
-    kicker: '스킨케어 브랜드 쇼핑',
-    desc: '세이지 그린과 종이 톤 위에 둥근 카드를 쌓은 스킨케어 쇼핑 랜딩페이지. 프리로더, 글자 단위 등장, 펼쳐지는 카테고리 타일, 틸트 카드 등 부드러운 모션을 더했습니다.',
-    tags: ['Shop', 'Sage Green', 'Rounded Cards', 'Motion'],
-    href: './sites/e/',
-    caseHref: './case/e/',
-    image: siteE,
+    id: 'g',
+    name: 'LUMEN MEDIA',
+    kicker: '영상 · 브랜딩 에이전시',
+    desc: '블루와 바이올렛 빛이 흐르는 미디어 에이전시 랜딩페이지. 뒤집히는 헤드라인, 스크롤로 커지는 쇼릴, 자동 탭, 끌어서 넘기는 후기 카드 덱까지 섹션마다 다른 모션을 담았습니다.',
+    tags: ['Agency', 'Blue & Violet', 'Showreel', 'Motion'],
+    href: './sites/g/',
+    caseHref: './case/g/',
+    image: siteG,
   },
 ]
 

@@ -18,8 +18,14 @@ import dMobile from '@/assets/sites/d-mobile.jpg'
 import eDesktop from '@/assets/sites/e.jpg'
 import eTablet from '@/assets/sites/e-tablet.jpg'
 import eMobile from '@/assets/sites/e-mobile.jpg'
+import fDesktop from '@/assets/sites/f.jpg'
+import fTablet from '@/assets/sites/f-tablet.jpg'
+import fMobile from '@/assets/sites/f-mobile.jpg'
+import gDesktop from '@/assets/sites/g.jpg'
+import gTablet from '@/assets/sites/g-tablet.jpg'
+import gMobile from '@/assets/sites/g-mobile.jpg'
 
-export type CaseId = 'a' | 'b' | 'c' | 'd' | 'e'
+export type CaseId = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'
 
 export interface ColorToken {
   name: string
@@ -470,6 +476,163 @@ export const CASES: CaseStudyInfo[] = [
         '헤드라인은 clamp(30px, 3.2vw, 46px)로 유동 축소',
         '호버 기반 모션(타일 펼침, 틸트)은 터치 기기에서 기본 상태로 표시',
         '프리로더와 글자 등장은 reduce-motion 설정 시 생략',
+      ],
+    },
+  },
+  // ── F · MOVA 오토리스 ─────────────────────────────────
+  {
+    id: 'f',
+    num: '06',
+    name: 'MOVA 오토리스',
+    kicker: '수입차 리스 · 장기렌트 견적',
+    tagline: '인디고 블루 한 가지 포인트로 신뢰감을 잡은 수입차 오토리스 · 장기렌트 랜딩페이지. 가격 계산기, 색상 스왑, 견적 폼까지 전환 흐름을 한 화면에 담았습니다.',
+    accent: '#3D3FD8',
+    accent2: '#2E30B8',
+    meta: [
+      { label: 'Type', value: '오토리스 · 장기렌트 견적 랜딩페이지' },
+      { label: 'Role', value: 'Figma 디자인 · 퍼블리싱 · 인터랙션' },
+      { label: 'Breakpoints', value: '1099px · 599px' },
+      { label: 'Stack', value: 'HTML · CSS · JS → React 변환' },
+    ],
+    fonts: ['Montserrat 600 · 700', 'Noto Sans KR 400 · 500 · 700 · 900'],
+    fontLink: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap',
+    concept: {
+      title: 'Trust in indigo · Conversion first · Motion that explains',
+      body: [
+        '자동차 금융 상품은 숫자와 조건이 먼저 읽혀야 합니다. 흰 바탕과 연한 그레이(#F4F6FB) 위에 인디고 블루(#3D3FD8) 한 가지만 포인트로 써서, 버튼 · 가격 · 활성 상태가 어디서나 같은 색으로 눈에 들어오도록 했습니다. 숫자는 Montserrat, 본문은 Noto Sans KR로 나눠 가격표의 가독성을 높였습니다.',
+        '히어로 사진이 가운데에서 양옆으로 열리고 헤드라인에 빛이 흐르며 시작합니다. 특징 아이콘은 선이 그려지듯 나타나고, 실적 숫자는 카운트업과 컨페티로 강조합니다. 계약기간 · 선수금 · 주행거리를 바꾸면 월 대여료가 오도미터처럼 굴러가고, 견적 폼은 완성도 게이지가 채워지며 제출까지 안내합니다.',
+      ],
+      keywords: ['Auto Lease', 'Indigo Blue', 'Price Calculator', 'Conversion', 'Form UX'],
+      layout: [
+        '최대 폭 1080px(--W)의 중앙 정렬 컨테이너(wrap)와 풀블리드 다크 · 인디고 섹션의 교차',
+        'Hero → Features → Lease → Stats → Trims → Price → Quote → Footer 순서의 전환 퍼널',
+        '고정 헤더(76px → 스크롤 시 64px 글래스), 모바일 하단 CTA 바, 자동차 TOP 버튼',
+        '[data-up] 공통 리빌(perspective 기울임)과 --d 변수로 등장 순서 제어',
+      ],
+    },
+    colors: [
+      { name: 'Indigo', value: '#3D3FD8', role: '포인트 · 버튼 · 활성 상태' },
+      { name: 'Indigo Dark', value: '#2E30B8', role: '버튼 호버' },
+      { name: 'Indigo Light', value: '#EEF0FF', role: '전화 배지 · 체크 원', light: true },
+      { name: 'Dark', value: '#1E1F26', role: '리스 소개 섹션 배경' },
+      { name: 'Ink', value: '#16171C', role: '본문 · 가격 숫자' },
+      { name: 'Muted', value: '#7A7D88', role: '보조 텍스트 · 라벨' },
+      { name: 'BG', value: '#F4F6FB', role: '가격표 배경 · 아이콘 원', light: true },
+      { name: 'Line', value: '#E2E5EE', role: '구분선', light: true },
+      { name: 'Footer', value: '#121318', role: '푸터 배경' },
+    ],
+    type: [
+      { name: 'Logo · Montserrat 700', sample: 'MOVA', family: 'Montserrat', size: 32, weight: 700, letterSpacing: '0.06em' },
+      { name: 'Hero · Noto Sans KR 900', sample: '2026 프리미엄 SUV 오토리스 · 장기렌트', family: "'Noto Sans KR'", size: 36, weight: 900, letterSpacing: '-0.03em' },
+      { name: 'Heading · Noto Sans KR 700', sample: '오토리스 · 장기렌트 가격표', family: "'Noto Sans KR'", size: 28, weight: 700, letterSpacing: '-0.02em' },
+      { name: 'Number · Montserrat 700', sample: '774,000', family: 'Montserrat', size: 30, weight: 700 },
+      { name: 'Body · Noto Sans KR 14', sample: '차량 가격비교부터 맞춤견적까지 한 번에', family: "'Noto Sans KR'", size: 14, weight: 400 },
+    ],
+    components: [
+      { name: 'Header & Indicator', desc: '스크롤 시 흰 글래스로 바뀌는 고정 헤더. 메뉴 아래 인디고 바(ind)가 호버 · 현재 섹션을 따라 이동합니다.', usage: '상단 내비게이션' },
+      { name: 'Drawer', desc: '오른쪽에서 밀려 나오는 모바일 메뉴. ESC · 바깥 클릭으로 닫힙니다.', usage: '1099px 이하' },
+      { name: 'Button', desc: 'btn-ind(인디고) · btn-ol(아웃라인) 두 변형. 호버 시 왼쪽에서 채워지는 ::before 효과.', usage: 'Hero CTA, 견적 신청' },
+      { name: 'Line-draw Icon', desc: 'stroke-dashoffset 으로 선이 그려지는 아이콘. 호버하면 원이 퍼지는 리플.', usage: 'Features 3개' },
+      { name: 'Marker', desc: '문장 속 핵심 구절 아래 인디고 형광펜이 순서대로 그어지는 강조(mk).', usage: '자동차 리스란?' },
+      { name: 'Stats', desc: '화면에 들어오면 숫자가 카운트업되고 캔버스 컨페티가 터지는 실적 블록.', usage: '누적 견적 · 출고 · 재계약률' },
+      { name: 'Color Swap', desc: '스와치를 누르면 차량 이미지가 옆으로 밀려나며 새 색상으로 교체되는 트림 카드.', usage: '신차가격표' },
+      { name: 'Segment & Range', desc: '알약 인디케이터가 미끄러지는 세그먼트와 선수금 슬라이더로 조건을 바꾸는 계산기.', usage: '계약기간 · 선수금 · 연 주행' },
+      { name: 'Odometer', desc: '자릿수별로 숫자가 굴러가는 월 대여료 표시(odo).', usage: '가격 카드' },
+      { name: 'Quote Form', desc: '플로팅 라벨, 전화번호 자동 하이픈, 완성도 게이지, 흔들림 에러, 완료 모달.', usage: '맞춤견적신청' },
+      { name: 'Mobile Bar & TOP', desc: '스크롤 후 나타나는 하단 전화 · 견적 바와, 누르면 자동차가 위로 달려가는 TOP 버튼.', usage: '모바일 · 전역' },
+    ],
+    sections: ['Hero', 'Features', 'Lease', 'Stats', 'Trims', 'Price', 'Quote', 'Footer'],
+    responsive: {
+      intro: '1080px 컨테이너를 기준으로 2단계 분기점에서 열 수를 줄이고, 모바일에서는 헤더 메뉴 대신 드로어와 하단 CTA 바로 전환 동선을 유지했습니다.',
+      breakpoints: [
+        { label: 'Desktop', width: 1440, image: fDesktop, notes: ['헤더 76px, 메뉴 인디케이터', '특징 3열 · 가격 카드 3열', '견적 폼 셀렉트 5열'] },
+        { label: 'Tablet', width: 834, image: fTablet, notes: ['헤더 64px, 메뉴 → 버거 버튼', '섹션 패딩 100 → 64px', '셀렉트 3열, 통계 간격 축소'] },
+        { label: 'Mobile', width: 390, image: fMobile, notes: ['특징 · 트림 · 가격 카드 1열', '리스 소개 사진이 아래로', '하단 전화 · 견적 바 고정'] },
+      ],
+      rules: [
+        '컨테이너 폭 min(1080px, 100% - 40px)로 좌우 여백 자동 확보',
+        '히어로 제목은 clamp(32px, 3.7vw, 54px)로 유동 축소',
+        '모바일에서 --bar 변수로 하단 바 높이만큼 푸터 · TOP 버튼 위치 보정',
+        'prefers-reduced-motion 설정 시 모든 모션 · 컨페티 · 오도미터 생략',
+      ],
+    },
+  },
+  // ── G · LUMEN MEDIA ───────────────────────────────────
+  {
+    id: 'g',
+    num: '07',
+    name: 'LUMEN MEDIA',
+    kicker: '영상 · 브랜딩 에이전시',
+    tagline: '블루와 바이올렛 빛이 흐르는 미디어 에이전시 랜딩페이지. 쇼릴 슬라이드, 단어 플리퍼, 카드 덱 후기 등 움직임으로 브랜드의 에너지를 전합니다.',
+    accent: '#1F5BFF',
+    accent2: '#7B5CFF',
+    meta: [
+      { label: 'Type', value: '미디어 에이전시 소개 랜딩페이지' },
+      { label: 'Role', value: 'Figma 디자인 · 퍼블리싱 · 인터랙션' },
+      { label: 'Breakpoints', value: '1099px · 599px' },
+      { label: 'Stack', value: 'HTML · CSS · JS → React 변환' },
+    ],
+    fonts: ['Poppins 500 · 600 · 700', 'Noto Sans KR 400 · 500 · 700 · 900'],
+    fontLink: 'https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap',
+    concept: {
+      title: 'Light in motion · Blue to violet · Living layout',
+      body: [
+        '"브랜드를 빛내는 파트너"라는 메시지에 맞춰, 흰 바탕 위에 블루(#1F5BFF)에서 바이올렛(#7B5CFF)으로 이어지는 빛을 포인트로 썼습니다. 히어로 뒤에서는 블러 처리된 블롭이 천천히 떠다니고 포인터를 따라 움직이며, 푸터의 큰 영어 타이포는 마우스 위치를 따라 빛이 비칩니다.',
+        '정적인 섹션이 하나도 없도록 설계했습니다. 헤드라인의 핵심 단어가 3D로 뒤집히고, 쇼릴은 스크롤에 따라 커지며 슬라이드가 자동 재생됩니다. 프로세스 라인은 스크롤로 그려지고, 서비스 탭은 대각선 와이프로 사진을 바꾸며, 후기 카드는 끌어서 넘기는 덱으로 쌓았습니다.',
+      ],
+      keywords: ['Media Agency', 'Blue & Violet', 'Showreel', 'Card Deck', 'Micro-interaction'],
+      layout: [
+        '최대 폭 1120px(--W) 컨테이너와 풀블리드 밴드 · 인사이트 · 푸터 섹션의 교차',
+        'Hero(쇼릴) → Process → CTA Band → Services → Insights → Reviews → Footer 순서',
+        '스크롤 60px 이후 헤더가 떠 있는 알약(pill) 글래스로 변형',
+        '[data-rv] 공통 리빌(skewY 상승)과 --d 변수로 등장 순서 제어',
+      ],
+    },
+    colors: [
+      { name: 'Blue', value: '#1F5BFF', role: '포인트 · 버튼 · 푸터 배경' },
+      { name: 'Blue Dark', value: '#1546D6', role: '버튼 호버' },
+      { name: 'Violet', value: '#7B5CFF', role: '로고 그라데이션 · 스포트라이트' },
+      { name: 'Ink', value: '#14162B', role: '본문 · 제목' },
+      { name: 'Muted', value: '#6E7191', role: '보조 텍스트' },
+      { name: 'BG', value: '#F5F7FF', role: '인사이트 배경', light: true },
+      { name: 'Band', value: '#E8EEFF', role: 'CTA 밴드 배경', light: true },
+      { name: 'Hero', value: '#F3F4FF', role: '히어로 배경', light: true },
+      { name: 'Line', value: '#E4E7F2', role: '구분선 · 트랙', light: true },
+    ],
+    type: [
+      { name: 'Logo · Poppins 600', sample: 'LUMEN media', family: 'Poppins', size: 28, weight: 600, letterSpacing: '0.02em' },
+      { name: 'Hero · Noto Sans KR 700', sample: '브랜드를 빛내는 영상 파트너', family: "'Noto Sans KR'", size: 36, weight: 700, letterSpacing: '-0.035em' },
+      { name: 'Heading · Noto Sans KR 700', sample: '3단계로 완성하는 작업 방식', family: "'Noto Sans KR'", size: 28, weight: 700, letterSpacing: '-0.025em' },
+      { name: 'Footer · Poppins 700', sample: "Let's create together.", family: 'Poppins', size: 44, weight: 700, letterSpacing: '-0.03em' },
+      { name: 'Body · Noto Sans KR 14', sample: '기획부터 촬영, 디자인, 마케팅까지 한 팀에서.', family: "'Noto Sans KR'", size: 14, weight: 400 },
+    ],
+    components: [
+      { name: 'Pill Header', desc: '스크롤하면 폭이 줄어들며 떠 있는 알약 모양 글래스 헤더로 변형됩니다.', usage: '상단 내비게이션' },
+      { name: 'Sheet Menu', desc: '위에서 spring 이징으로 내려오는 모바일 메뉴 시트.', usage: '1099px 이하' },
+      { name: 'Word Flipper', desc: '헤드라인 속 단어가 X축으로 뒤집히며 영상 · 브랜딩 · 콘텐츠 · 캠페인으로 바뀝니다.', usage: 'Hero' },
+      { name: 'Blobs', desc: '블러된 세 개의 색 원이 떠다니고 포인터를 따라 움직이는 배경.', usage: 'Hero' },
+      { name: 'Showreel', desc: '스크롤에 따라 확대되고, 진행 점(pdots)과 함께 자동 전환되는 슬라이드. 호버 시 일시정지.', usage: 'Hero' },
+      { name: 'Player Modal', desc: '켄번즈 효과, 이퀄라이저, 진행 바와 재생 · 일시정지가 있는 가짜 비디오 플레이어.', usage: '쇼릴 보기' },
+      { name: 'Process Track', desc: '스크롤 양에 따라 그라데이션 선이 그려지고 단계 아이콘이 순서대로 켜집니다.', usage: '작업 프로세스' },
+      { name: 'Decode Text', desc: '화면에 들어오면 글자가 무작위 문자에서 원래 문장으로 해독되는 강조.', usage: 'CTA 밴드' },
+      { name: 'Auto Tabs', desc: '세로 진행 바가 채워지며 자동으로 넘어가고, 사진은 대각선 클립으로 교체되는 서비스 탭.', usage: '우리가 하는 일' },
+      { name: 'FLIP Filter', desc: '카테고리를 누르면 카드가 이전 위치에서 새 위치로 자연스럽게 이동하는 필터.', usage: '인사이트' },
+      { name: 'Card Deck', desc: '쌓인 후기 카드를 끌거나 버튼으로 날려 보내는 덱. 앞 카드에만 별이 순서대로 켜집니다.', usage: '고객사의 이야기' },
+      { name: 'Liquid TOP', desc: '스크롤 진행률만큼 물이 차오르고, 누르면 빠져나가는 TOP 버튼.', usage: '전역' },
+    ],
+    sections: ['Hero', 'Process', 'CTA Band', 'Services', 'Insights', 'Reviews', 'Footer'],
+    responsive: {
+      intro: '1120px 컨테이너를 기준으로 열 수를 줄이고, 모바일에서는 프로세스 라인을 세로로, 쇼릴을 세로 비율로 바꿔 모션을 그대로 유지했습니다.',
+      breakpoints: [
+        { label: 'Desktop', width: 1440, image: gDesktop, notes: ['헤더 72px → 알약 헤더 58px', '프로세스 3열 · 인사이트 4열', '서비스 사진 620px + 탭'] },
+        { label: 'Tablet', width: 834, image: gTablet, notes: ['메뉴 → 버거 버튼 · 시트', '인사이트 2열', '섹션 패딩 110 → 64px'] },
+        { label: 'Mobile', width: 390, image: gMobile, notes: ['쇼릴 350:420 세로 비율', '프로세스 라인 세로 전환', '인사이트 2열 축소 · 덱 높이 380px'] },
+      ],
+      rules: [
+        '컨테이너 폭 min(1120px, 100% - 40px)로 좌우 여백 자동 확보',
+        '히어로 제목 clamp(32px, 3.7vw, 54px), 푸터 타이포 clamp(40px, 7vw, 96px)',
+        '포인터 추적 효과(블롭 · 스포트라이트 · 푸터 빛)는 fine pointer 에서만 동작',
+        'prefers-reduced-motion 설정 시 자동 재생 · 플리퍼 · 디코드 생략',
       ],
     },
   },
