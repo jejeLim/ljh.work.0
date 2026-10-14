@@ -380,8 +380,8 @@ $a-iri-d: linear-gradient(135deg, $a-i1, $a-i2, $a-i3, $a-i4, $a-i5);
 // ── Other sites ─────────────────────────────────────────
 .grid {
   display: grid;
-  // 대표 카드 아래 4장 → 2×2
-  grid-template-columns: repeat(2, 1fr);
+  // 대표 카드 아래 6장 → 3열 × 2줄 (윗줄: 커피 · 화장품 · 타이어)
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 24px;
 
