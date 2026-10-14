@@ -10,6 +10,7 @@ import { Websites } from '@/components/sections/Websites/Websites'
 import { Craft } from '@/components/sections/Craft/Craft'
 import { Services } from '@/components/sections/Services/Services'
 import { ProjectDetail } from '@/components/sections/ProjectDetail/ProjectDetail'
+import { ScrollTop } from '@/components/ui/ScrollTop/ScrollTop'
 
 function App() {
   useReveal()
@@ -29,6 +30,7 @@ function App() {
         <ProjectDetail />
       </main>
       <Footer />
+      <ScrollTop />
     </>
   )
 }
