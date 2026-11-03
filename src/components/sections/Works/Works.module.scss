@@ -151,7 +151,7 @@
   padding: 0 80px;
   text-align: center;
   color: $white;
-  animation: fadeUp 0.9s $ease-out both;
+  animation: global(fadeUp) 0.9s $ease-out both;
 
   @include mobile {
     padding: 0 48px;

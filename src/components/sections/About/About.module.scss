@@ -260,7 +260,7 @@
   top: 40px;
   width: 240px;
   height: 300px;
-  animation: float 8s ease-in-out infinite reverse;
+  animation: global(float) 8s ease-in-out infinite reverse;
   pointer-events: none;
 
   @include mobile {
@@ -278,7 +278,7 @@
   gap: 18px;
   max-width: 470px;
   text-align: center;
-  animation: fadeUp 0.7s $ease-out both;
+  animation: global(fadeUp) 0.7s $ease-out both;
 }
 
 .stageTitle {
@@ -310,7 +310,7 @@
 // ── Floating pills ──────────────────────────────────────
 .floating {
   position: absolute;
-  animation: float 6s ease-in-out infinite;
+  animation: global(float) 6s ease-in-out infinite;
   z-index: 2;
 
   span {

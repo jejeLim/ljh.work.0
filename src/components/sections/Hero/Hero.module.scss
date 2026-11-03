@@ -63,7 +63,7 @@
   height: 940px;
   max-width: none;
   transform: translateX(-50%);
-  animation: float 9s ease-in-out infinite;
+  animation: global(float) 9s ease-in-out infinite;
   pointer-events: none;
 
   @include mobile {
@@ -161,7 +161,7 @@
 .chev {
   display: inline-block;
   margin-left: 4px;
-  animation: bob 1.8s ease-in-out infinite;
+  animation: global(bob) 1.8s ease-in-out infinite;
 }
 
 .caption {

@@ -87,7 +87,7 @@
   position: absolute;
   border-radius: 50%;
   background: rgba(#b07a4e, 0.34);
-  animation: twinkle 4s ease-in-out infinite;
+  animation: global(twinkle) 4s ease-in-out infinite;
 }
 
 .darkLabel {
