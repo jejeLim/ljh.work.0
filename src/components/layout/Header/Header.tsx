@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import menuIcon from '@/assets/icons/menu.svg'
-import langIcon from '@/assets/icons/lang.svg'
 import { NAV_LINKS, CONTACT_EMAIL } from '@/data/portfolio'
 import { useScrolled } from '@/hooks/useScrolled'
 import { KakaoContact } from '@/components/ui/KakaoContact/KakaoContact'
@@ -40,9 +39,6 @@ export function Header() {
             <KakaoContact size="sm" className={s.contact}>
               Contact ↗
             </KakaoContact>
-            <button type="button" className={s.lang} aria-label="language">
-              <img src={langIcon} alt="" width={22} height={22} />
-            </button>
           </div>
         </div>
       </header>

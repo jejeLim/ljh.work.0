@@ -133,7 +133,7 @@
 }
 
 .body {
-  animation: fadeUp 0.8s $ease-out both;
+  animation: global(fadeUp) 0.8s $ease-out both;
 }
 
 .titleRow {
@@ -323,7 +323,7 @@
 
   li {
     flex: 0 1 184px;
-    animation: fadeUp 0.7s $ease-out both;
+    animation: global(fadeUp) 0.7s $ease-out both;
   }
 
   @include mobile {
@@ -368,6 +368,21 @@
       transform: none;
     }
   }
+}
+
+// PPT 묶음 페이지 수
+.pageCount {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba($ink, 0.72);
+  color: $white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
 }
 
 // 호버 시 나타나는 확대 아이콘

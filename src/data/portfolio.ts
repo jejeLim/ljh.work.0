@@ -16,6 +16,10 @@ import pptAiCover from '@/assets/works/ppt-ai-cover.jpg'
 import pptNpo01 from '@/assets/works/ppt-npo-01.jpg'
 import pptOm01 from '@/assets/works/ppt-om-01.jpg'
 import pptAi01 from '@/assets/works/ppt-ai-01.jpg'
+// 파일명(01.jpg ~)이 페이지 순서
+const pptJgPages = Object.entries(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, src]) => src)
 import print01 from '@/assets/works/print-01.jpg'
 import print02 from '@/assets/works/print-02.jpg'
 import detail01 from '@/assets/works/detail-01.jpg'
@@ -213,6 +217,8 @@ export interface ProjectItem {
   title: string
   sub?: string
   group?: string
+  /** PPT처럼 페이지 묶음이 있는 작업. 첫 장이 표지 */
+  pages?: string[]
 }
 
 export interface ProjectInfo {
@@ -304,18 +310,27 @@ export const PROJECTS: ProjectInfo[] = [
       {
         title: 'NPO 기반 Cloud 운영 혁신 AX 제안',
         sub: '제안 발표 자료 · 16:9 · 13p — AI Incident Assistant 기반 장애 대응 혁신 제안. 다크 커버와 화이트 본문의 대비, 레드 포인트로 문제와 성과 지표를 선명하게 전달합니다.',
+        pages: [pptNpoCover, pptNpo01],
       },
       {
         title: 'IT 운영유지보수(O&M) 효율화 전략',
         sub: '전략 보고서 · 16:9 · 6p — 멀티 벤더 서비스와 AIOps를 통한 운영 혁신 전략 보고서. 여백 중심의 레이아웃으로 현황·방향·전략을 간결하게 정리했습니다.',
+        pages: [pptOmCover, pptOm01],
       },
       {
         title: 'IT 업계의 AI 활용과 하네스 엔지니어링',
         sub: '기획 보고서 · 16:9 · 23p — IT 업계의 AI 활용 방식을 하네스 엔지니어링에 적용하는 방안을 담은 보고서. 텍스트가 많은 내용을 체크리스트·비교 카드로 구조화했습니다.',
+        pages: [pptAiCover, pptAi01],
+      },
+      {
+        title: '조선글로벌 회사소개서',
+        sub: '회사소개서 · 16:9 · 18p — 브랜드 개발·독점 유통·글로벌 시장 개척을 소개하는 회사소개서. 아이보리와 블랙 바탕에 세리프 타이포, 레드 포인트로 브랜드의 격을 살렸습니다.',
+        pages: pptJgPages,
       },
     ],
     image: pptNpoCover,
-    thumbs: [pptOmCover, pptAiCover, pptNpo01, pptOm01, pptAi01],
+    // 썸네일은 items[].pages 표지로 대신 보여준다
+    thumbs: [],
     cardHeight: 300,
   },
   {

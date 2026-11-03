@@ -9,17 +9,18 @@ import s from './ProjectDetail.module.scss'
 
 export function ProjectDetail() {
   const [index, setIndex] = useState(0)
-  const [zoom, setZoom] = useState<number | null>(null)
+  const [view, setView] = useState<{ images: LightboxImage[]; index: number } | null>(null)
   const total = PROJECTS.length
   const project = PROJECTS[index]
   const go = (dir: 1 | -1) => setIndex((i) => (i + dir + total) % total)
 
+  const toImages = (srcs: string[], caption: string): LightboxImage[] =>
+    srcs.map((src, i) => ({ src, alt: `${caption} ${i + 1}`, caption }))
   // 확대 보기 대상: 메인 이미지 + 썸네일 전부
-  const gallery: LightboxImage[] = [project.image, ...project.thumbs].map((src, i) => ({
-    src,
-    alt: `${project.label} ${i + 1}`,
-    caption: project.label,
-  }))
+  const gallery = toImages([project.image, ...project.thumbs], project.label)
+  // PPT처럼 페이지 묶음이 있으면 작업별로 묶어서 연다
+  const decks = project.items.flatMap((it) => (it.pages ? [{ title: it.title, images: toImages(it.pages, it.title) }] : []))
+  const openMain = () => setView({ images: decks[0]?.images ?? gallery, index: 0 })
 
   // Works 카드/슬라이더에서 선택한 프로젝트로 이동
   useEffect(
@@ -45,7 +46,7 @@ export function ProjectDetail() {
       <div className={s.grid}>
         {/* ── Main image ── */}
         <Reveal variant="left" className={s.mainWrap}>
-          <button type="button" className={s.mainStack} onClick={() => setZoom(0)} aria-label={`${project.label} 이미지 확대`}>
+          <button type="button" className={s.mainStack} onClick={openMain} aria-label={`${project.label} 이미지 확대`}>
             {PROJECTS.map((p, i) => (
               <div key={p.id} className={[s.main, i === index && s.mainActive].filter(Boolean).join(' ')}>
                 <img src={p.image} alt={p.label} className={s.mainImg} loading={i === 0 ? 'eager' : 'lazy'} />
@@ -124,20 +125,35 @@ export function ProjectDetail() {
             </dl>
 
             <ul className={s.thumbs}>
-              {project.thumbs.map((src, i) => (
-                <li key={src} style={{ animationDelay: `${i * 90}ms` }}>
-                  <button type="button" className={s.thumb} onClick={() => setZoom(i + 1)} aria-label={`${project.label} 이미지 ${i + 2} 확대`}>
-                    <img src={src} alt={`${project.label} ${i + 2}`} loading="lazy" />
-                    <span className={s.zoomHint}>⤢</span>
-                  </button>
-                </li>
-              ))}
+              {decks.length
+                ? decks.map((d, i) => (
+                    <li key={d.title} style={{ animationDelay: `${i * 90}ms` }}>
+                      <button type="button" className={s.thumb} onClick={() => setView({ images: d.images, index: 0 })} aria-label={`${d.title} ${d.images.length}페이지 보기`}>
+                        <img src={d.images[0].src} alt={d.title} loading="lazy" />
+                        <span className={s.pageCount}>{d.images.length}p</span>
+                        <span className={s.zoomHint}>⤢</span>
+                      </button>
+                    </li>
+                  ))
+                : project.thumbs.map((src, i) => (
+                    <li key={src} style={{ animationDelay: `${i * 90}ms` }}>
+                      <button type="button" className={s.thumb} onClick={() => setView({ images: gallery, index: i + 1 })} aria-label={`${project.label} 이미지 ${i + 2} 확대`}>
+                        <img src={src} alt={`${project.label} ${i + 2}`} loading="lazy" />
+                        <span className={s.zoomHint}>⤢</span>
+                      </button>
+                    </li>
+                  ))}
             </ul>
           </div>
         </div>
       </div>
 
-      <Lightbox images={gallery} index={zoom} onClose={() => setZoom(null)} onChange={setZoom} />
+      <Lightbox
+        images={view?.images ?? []}
+        index={view?.index ?? null}
+        onClose={() => setView(null)}
+        onChange={(i) => setView((v) => v && { ...v, index: i })}
+      />
     </section>
   )
 }
