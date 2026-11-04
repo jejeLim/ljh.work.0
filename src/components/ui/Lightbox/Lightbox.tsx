@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import s from './Lightbox.module.scss'
 
 export interface LightboxImage {
@@ -23,6 +23,10 @@ export function Lightbox({ images, index, onClose, onChange }: Props) {
   const total = images.length
   // 로드가 끝난 이미지의 src를 기억해 두면, 이미지가 바뀔 때 별도 초기화 없이 페이드인이 다시 동작한다
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
+  // 상세페이지처럼 세로로 긴 이미지는 화면 높이에 맞추면 글자가 안 보여서, 가로 폭에 맞추고 스크롤로 본다
+  const [tallSrc, setTallSrc] = useState<string | null>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  useEffect(() => overlayRef.current?.scrollTo(0, 0), [index])
 
   const go = useCallback(
     (dir: 1 | -1) => {
@@ -51,9 +55,10 @@ export function Lightbox({ images, index, onClose, onChange }: Props) {
   if (!open) return null
   const img = images[index!]
   const loaded = loadedSrc === img.src
+  const tall = tallSrc === img.src
 
   return (
-    <div className={s.overlay} role="dialog" aria-modal="true" aria-label={img.alt ?? 'image viewer'} onClick={onClose}>
+    <div ref={overlayRef} className={[s.overlay, tall && s.overlayTall].filter(Boolean).join(' ')} role="dialog" aria-modal="true" aria-label={img.alt ?? 'image viewer'} onClick={onClose}>
       <button type="button" className={s.close} onClick={onClose} aria-label="close">
         ×
       </button>
@@ -90,8 +95,12 @@ export function Lightbox({ images, index, onClose, onChange }: Props) {
           key={img.src}
           src={img.src}
           alt={img.alt ?? ''}
-          className={[s.img, loaded && s.imgLoaded].filter(Boolean).join(' ')}
-          onLoad={() => setLoadedSrc(img.src)}
+          className={[s.img, tall && s.imgTall, loaded && s.imgLoaded].filter(Boolean).join(' ')}
+          onLoad={(e) => {
+            const { naturalWidth: w, naturalHeight: h } = e.currentTarget
+            if (h > w * 1.8) setTallSrc(img.src)
+            setLoadedSrc(img.src)
+          }}
         />
         <figcaption className={s.caption}>
           {img.caption && <span>{img.caption}</span>}

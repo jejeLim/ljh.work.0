@@ -20,10 +20,19 @@ import pptAi01 from '@/assets/works/ppt-ai-01.jpg'
 const pptJgPages = Object.entries(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, src]) => src)
+// 상세페이지: Figma 원본을 섹션 경계에서 잘라 페이지로 넘겨 본다
+const detailGajuPages = Object.entries(import.meta.glob<string>('../assets/works/detail-gaju/*.jpg', { eager: true, import: 'default' }))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, src]) => src)
+const detailBookPages = Object.entries(import.meta.glob<string>('../assets/works/detail-book/*.jpg', { eager: true, import: 'default' }))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, src]) => src)
 import print01 from '@/assets/works/print-01.jpg'
 import print02 from '@/assets/works/print-02.jpg'
 import detail01 from '@/assets/works/detail-01.jpg'
 import detail02 from '@/assets/works/detail-02.jpg'
+import detailGajuMockup from '@/assets/works/detail-gaju-mockup.jpg'
+import detailBookMockup from '@/assets/works/detail-book-mockup.jpg'
 import siteA from '@/assets/sites/a.jpg'
 import siteB from '@/assets/sites/b.jpg'
 import siteC from '@/assets/sites/c.jpg'
@@ -363,9 +372,23 @@ export const PROJECTS: ProjectInfo[] = [
     labelEn: 'DETAIL PAGE DESIGN',
     title: ['DETAIL PAGE', 'DESIGN'],
     role: '상세페이지 기획 · 디자인',
-    items: [{ title: '쇼핑몰 상품 상세페이지' }, { title: '모바일 최적화 레이아웃' }],
+    items: [
+      { title: '쇼핑몰 상품 상세페이지', pages: [detail01] },
+      { title: '모바일 최적화 레이아웃', pages: [detail02] },
+      {
+        title: '360° 회전 투명 아크릴 독서대',
+        sub: '생활용품 상세페이지 · 780px — 고민 말풍선으로 공감을 열고, 4가지 포인트·활용·사이즈·Q&A로 정리한 그린 톤의 깔끔한 상세페이지입니다.',
+        pages: [detailBookMockup, ...detailBookPages],
+      },
+      {
+        title: '가주수산 – 세계 생선구이세트 대(大)전',
+        sub: '수산물 상세페이지 · 780px — 바다 이미지와 굵은 타이포로 시선을 잡고, 라인업·비교표·조리법·배송 안내까지 구매 결정 흐름에 맞춰 구성했습니다.',
+        pages: [detailGajuMockup, ...detailGajuPages],
+      },
+    ],
     image: detail01,
-    thumbs: [detail02],
+    // 썸네일은 items[].pages 표지로 대신 보여준다
+    thumbs: [],
     cardHeight: 520,
   },
 ]
@@ -381,6 +404,17 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   PPT: 'Presentation',
   Print: 'Print',
   Detail: 'Detail Page',
+}
+
+/** PROJECTS 탭에 쓰는 한글 이름 */
+export const CATEGORY_LABEL_KO: Record<Category, string> = {
+  Web: '웹 디자인',
+  App: '앱 디자인',
+  Branding: '브랜딩 디자인',
+  Content: 'SNS 콘텐츠',
+  PPT: 'PPT 디자인',
+  Print: '인쇄물 디자인',
+  Detail: '상세페이지 디자인',
 }
 
 /** 대표 작업 슬라이더 (PDF 섹션 중 4개) */

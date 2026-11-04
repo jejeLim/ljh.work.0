@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CATEGORY_LABEL, PROFILE, PROJECTS } from '@/data/portfolio'
+import { CATEGORY_LABEL_KO, PROFILE, PROJECTS } from '@/data/portfolio'
 import { onSelectProject } from '@/lib/projectBus'
 import { SectionLabel } from '@/components/ui/SectionLabel/SectionLabel'
 import { Pill } from '@/components/ui/Pill/Pill'
@@ -62,7 +62,7 @@ export function ProjectDetail() {
           <div className={s.tags}>
             {PROJECTS.map((p, i) => (
               <Pill key={p.id} dim={i !== index} onClick={() => setIndex(i)} size="sm">
-                {p.num}&nbsp; {CATEGORY_LABEL[p.category]}
+                {p.num}&nbsp; {CATEGORY_LABEL_KO[p.category]}
               </Pill>
             ))}
           </div>

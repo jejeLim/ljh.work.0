@@ -17,6 +17,11 @@
   }
 }
 
+.overlayTall {
+  overflow-y: auto;
+  place-items: start center;
+}
+
 .figure {
   position: relative;
   display: flex;
@@ -46,6 +51,11 @@
     max-height: calc(100vh - 150px);
     border-radius: 8px;
   }
+}
+
+.imgTall {
+  width: min(780px, 100%);
+  max-height: none;
 }
 
 .imgLoaded {
