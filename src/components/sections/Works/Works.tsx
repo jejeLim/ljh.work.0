@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import worksEllipse from '@/assets/deco/works-ellipse.svg'
 import worksFrame from '@/assets/deco/works-frame.svg'
-import { CATEGORY_LABEL, FEATURED_IDS, PROJECTS, WORK_FILTERS, type ProjectInfo, type WorkFilter } from '@/data/portfolio'
+import { CATEGORY_LABEL_KO, FEATURED_IDS, PROJECTS, WORK_FILTERS, type ProjectInfo, type WorkFilter } from '@/data/portfolio'
 import { selectProject } from '@/lib/projectBus'
 import { SectionLabel } from '@/components/ui/SectionLabel/SectionLabel'
 import { Pill } from '@/components/ui/Pill/Pill'
@@ -92,7 +92,7 @@ function Card({ project, index }: { project: ProjectInfo; index: number }) {
           <div>
             <h3 className={s.cardTitle}>{project.label}</h3>
             <p className={s.cardMeta}>
-              {CATEGORY_LABEL[project.category]} · {project.items.length} works
+              {CATEGORY_LABEL_KO[project.category]} · 작업 {project.items.length}개
             </p>
           </div>
           <ArrowCircle className={s.cardArrow} />
@@ -124,7 +124,7 @@ export function Works() {
         <Reveal className={s.filter} delay={140}>
           {WORK_FILTERS.map((f) => (
             <Pill key={f} active={filter === f} onClick={() => setFilter(f)}>
-              {f === 'All' ? `All ${TOTAL_WORKS}` : f === 'Content' ? 'SNS' : f}
+              {f === 'All' ? `All ${TOTAL_WORKS}` : CATEGORY_LABEL_KO[f]}
             </Pill>
           ))}
         </Reveal>

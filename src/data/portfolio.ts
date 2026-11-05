@@ -20,13 +20,6 @@ import pptAi01 from '@/assets/works/ppt-ai-01.jpg'
 const pptJgPages = Object.entries(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, src]) => src)
-// 상세페이지: Figma 원본을 섹션 경계에서 잘라 페이지로 넘겨 본다
-const detailGajuPages = Object.entries(import.meta.glob<string>('../assets/works/detail-gaju/*.jpg', { eager: true, import: 'default' }))
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src)
-const detailBookPages = Object.entries(import.meta.glob<string>('../assets/works/detail-book/*.jpg', { eager: true, import: 'default' }))
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src)
 import print01 from '@/assets/works/print-01.jpg'
 import print02 from '@/assets/works/print-02.jpg'
 import detail01 from '@/assets/works/detail-01.jpg'
@@ -240,6 +233,8 @@ export interface ProjectInfo {
   role: string
   items: ProjectItem[]
   image: string
+  /** 대표 이미지에서 보여줄 위치 (object-position). 기본은 가운데 */
+  imagePosition?: string
   thumbs: string[]
   /** 메이슨리 카드 높이 (데스크톱) */
   cardHeight: number
@@ -317,14 +312,14 @@ export const PROJECTS: ProjectInfo[] = [
     role: '제안서 · 보고서 디자인',
     items: [
       {
+        title: '조선글로벌 회사소개서',
+        sub: '회사소개서 · 16:9 · 18p — 브랜드 개발·독점 유통·글로벌 시장 개척을 소개하는 회사소개서. 아이보리와 블랙 바탕에 세리프 타이포, 레드 포인트로 브랜드의 격을 살렸습니다.',
+        pages: pptJgPages,
+      },
+      {
         title: 'NPO 기반 Cloud 운영 혁신 AX 제안',
         sub: '제안 발표 자료 · 16:9 · 13p — AI Incident Assistant 기반 장애 대응 혁신 제안. 다크 커버와 화이트 본문의 대비, 레드 포인트로 문제와 성과 지표를 선명하게 전달합니다.',
         pages: [pptNpoCover, pptNpo01],
-      },
-      {
-        title: 'IT 운영유지보수(O&M) 효율화 전략',
-        sub: '전략 보고서 · 16:9 · 6p — 멀티 벤더 서비스와 AIOps를 통한 운영 혁신 전략 보고서. 여백 중심의 레이아웃으로 현황·방향·전략을 간결하게 정리했습니다.',
-        pages: [pptOmCover, pptOm01],
       },
       {
         title: 'IT 업계의 AI 활용과 하네스 엔지니어링',
@@ -332,12 +327,13 @@ export const PROJECTS: ProjectInfo[] = [
         pages: [pptAiCover, pptAi01],
       },
       {
-        title: '조선글로벌 회사소개서',
-        sub: '회사소개서 · 16:9 · 18p — 브랜드 개발·독점 유통·글로벌 시장 개척을 소개하는 회사소개서. 아이보리와 블랙 바탕에 세리프 타이포, 레드 포인트로 브랜드의 격을 살렸습니다.',
-        pages: pptJgPages,
+        title: 'IT 운영유지보수(O&M) 효율화 전략',
+        sub: '전략 보고서 · 16:9 · 6p — 멀티 벤더 서비스와 AIOps를 통한 운영 혁신 전략 보고서. 여백 중심의 레이아웃으로 현황·방향·전략을 간결하게 정리했습니다.',
+        pages: [pptOmCover, pptOm01],
       },
     ],
-    image: pptNpoCover,
+    image: pptJgPages[0],
+    imagePosition: '85% center', // 오른쪽 JG 로고가 가운데 오도록
     // 썸네일은 items[].pages 표지로 대신 보여준다
     thumbs: [],
     cardHeight: 300,
@@ -378,12 +374,12 @@ export const PROJECTS: ProjectInfo[] = [
       {
         title: '360° 회전 투명 아크릴 독서대',
         sub: '생활용품 상세페이지 · 780px — 고민 말풍선으로 공감을 열고, 4가지 포인트·활용·사이즈·Q&A로 정리한 그린 톤의 깔끔한 상세페이지입니다.',
-        pages: [detailBookMockup, ...detailBookPages],
+        pages: [detailBookMockup],
       },
       {
         title: '가주수산 – 세계 생선구이세트 대(大)전',
         sub: '수산물 상세페이지 · 780px — 바다 이미지와 굵은 타이포로 시선을 잡고, 라인업·비교표·조리법·배송 안내까지 구매 결정 흐름에 맞춰 구성했습니다.',
-        pages: [detailGajuMockup, ...detailGajuPages],
+        pages: [detailGajuMockup],
       },
     ],
     image: detail01,

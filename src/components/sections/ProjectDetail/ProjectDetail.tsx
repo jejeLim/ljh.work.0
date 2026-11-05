@@ -49,7 +49,7 @@ export function ProjectDetail() {
           <button type="button" className={s.mainStack} onClick={openMain} aria-label={`${project.label} 이미지 확대`}>
             {PROJECTS.map((p, i) => (
               <div key={p.id} className={[s.main, i === index && s.mainActive].filter(Boolean).join(' ')}>
-                <img src={p.image} alt={p.label} className={s.mainImg} loading={i === 0 ? 'eager' : 'lazy'} />
+                <img src={p.image} alt={p.label} className={s.mainImg} style={{ objectPosition: p.imagePosition }} loading={i === 0 ? 'eager' : 'lazy'} />
               </div>
             ))}
             <span className={s.mainNum}>{project.num}</span>
