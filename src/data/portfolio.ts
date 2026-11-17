@@ -17,9 +17,12 @@ import pptNpo01 from '@/assets/works/ppt-npo-01.jpg'
 import pptOm01 from '@/assets/works/ppt-om-01.jpg'
 import pptAi01 from '@/assets/works/ppt-ai-01.jpg'
 // 파일명(01.jpg ~)이 페이지 순서
-const pptJgPages = Object.entries(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src)
+const toPages = (files: Record<string, string>) =>
+  Object.entries(files)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, src]) => src)
+const pptJgPages = toPages(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
+const pptDfnPages = toPages(import.meta.glob<string>('../assets/works/ppt-dfn/*.jpg', { eager: true, import: 'default' }))
 import print01 from '@/assets/works/print-01.jpg'
 import print02 from '@/assets/works/print-02.jpg'
 import detail01 from '@/assets/works/detail-01.jpg'
@@ -315,6 +318,11 @@ export const PROJECTS: ProjectInfo[] = [
         title: '조선글로벌 회사소개서',
         sub: '회사소개서 · 16:9 · 18p — 브랜드 개발·독점 유통·글로벌 시장 개척을 소개하는 회사소개서. 아이보리와 블랙 바탕에 세리프 타이포, 레드 포인트로 브랜드의 격을 살렸습니다.',
         pages: pptJgPages,
+      },
+      {
+        title: '디피니트 회사소개서',
+        sub: '회사소개서 · 16:9 · 9p — 제조 데이터를 판단으로 연결하는 산업 AI 플랫폼 DARVIS를 소개하는 회사소개서. 화이트·블루 톤에 3D 키비주얼과 제품 화면 목업, 핵심 수치 카드로 기술을 쉽게 전달했습니다.',
+        pages: pptDfnPages,
       },
       {
         title: 'NPO 기반 Cloud 운영 혁신 AX 제안',
