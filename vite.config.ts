@@ -37,6 +37,7 @@ export default defineConfig({
         caseE: fileURLToPath(new URL('./case/e/index.html', import.meta.url)),
         caseF: fileURLToPath(new URL('./case/f/index.html', import.meta.url)),
         caseG: fileURLToPath(new URL('./case/g/index.html', import.meta.url)),
+        web: fileURLToPath(new URL('./web/index.html', import.meta.url)),
         ppt: fileURLToPath(new URL('./ppt/index.html', import.meta.url)),
         gongjiyeon: fileURLToPath(new URL('./gongjiyeon/index.html', import.meta.url)),
       },

@@ -99,9 +99,10 @@ function Card({ site, index }: { site: WebsiteInfo; index: number }) {
   )
 }
 
-export function Websites() {
-  const featured = WEBSITES.find((w) => w.featured) ?? WEBSITES[0]
-  const rest = WEBSITES.filter((w) => w !== featured)
+/** sites: 하위 경로(/web/ 등)에서 쓸 때 링크 경로를 바꿔 넘긴다 */
+export function Websites({ sites = WEBSITES }: { sites?: WebsiteInfo[] }) {
+  const featured = sites.find((w) => w.featured) ?? sites[0]
+  const rest = sites.filter((w) => w !== featured)
 
   return (
     <section id="websites" className={s.websites}>
@@ -113,7 +114,7 @@ export function Websites() {
           피그마 시안을 그대로 구현한 랜딩페이지
         </Reveal>
         <Reveal as="p" className={s.desc} delay={80}>
-          디자인부터 반응형 퍼블리싱, 인터랙션까지 직접 코딩한 {WEBSITES.length}개의 사이트입니다. 카드를 누르면 메인 컨셉, 브랜드 색상, 컴포넌트, 반응형 구성을
+          디자인부터 반응형 퍼블리싱, 인터랙션까지 직접 코딩한 {sites.length}개의 사이트입니다. 카드를 누르면 메인 컨셉, 브랜드 색상, 컴포넌트, 반응형 구성을
           정리한 케이스 스터디로 이동합니다.
         </Reveal>
 

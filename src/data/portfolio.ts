@@ -6,15 +6,12 @@ import web01 from '@/assets/works/web-01.jpg'
 import web02 from '@/assets/works/web-02.jpg'
 import app01 from '@/assets/works/app-01.jpg'
 import app02 from '@/assets/works/app-02.jpg'
+import appProcureMockup from '@/assets/works/app-procure-mockup.jpg'
 import brand01 from '@/assets/works/brand-01.jpg'
 import brand02 from '@/assets/works/brand-02.jpg'
 import sns01 from '@/assets/works/sns-01.jpg'
 import sns02 from '@/assets/works/sns-02.jpg'
-import pptNpoCover from '@/assets/works/ppt-npo-cover.jpg'
-import pptOmCover from '@/assets/works/ppt-om-cover.jpg'
 import pptAiCover from '@/assets/works/ppt-ai-cover.jpg'
-import pptNpo01 from '@/assets/works/ppt-npo-01.jpg'
-import pptOm01 from '@/assets/works/ppt-om-01.jpg'
 import pptAi01 from '@/assets/works/ppt-ai-01.jpg'
 // 파일명(01.jpg ~)이 페이지 순서
 const toPages = (files: Record<string, string>) =>
@@ -23,6 +20,15 @@ const toPages = (files: Record<string, string>) =>
     .map(([, src]) => src)
 const pptJgPages = toPages(import.meta.glob<string>('../assets/works/ppt-jg/*.jpg', { eager: true, import: 'default' }))
 const pptDfnPages = toPages(import.meta.glob<string>('../assets/works/ppt-dfn/*.jpg', { eager: true, import: 'default' }))
+const pptNpoPages = toPages(import.meta.glob<string>('../assets/works/ppt-npo/*.jpg', { eager: true, import: 'default' }))
+const pptOmPages = toPages(import.meta.glob<string>('../assets/works/ppt-om/*.jpg', { eager: true, import: 'default' }))
+const printNhPages = toPages(import.meta.glob<string>('../assets/works/print-nh/*.jpg', { eager: true, import: 'default' }))
+const webLguPages = toPages(import.meta.glob<string>('../assets/works/web-lgu/*.jpg', { eager: true, import: 'default' }))
+const webOm7Pages = toPages(import.meta.glob<string>('../assets/works/web-om7/*.jpg', { eager: true, import: 'default' }))
+const webSniPages = toPages(import.meta.glob<string>('../assets/works/web-sni/*.jpg', { eager: true, import: 'default' }))
+const webSkbPages = toPages(import.meta.glob<string>('../assets/works/web-skb/*.jpg', { eager: true, import: 'default' }))
+// 공공 조달 앱: 보안상 실제 데이터(기관·공고명·금액·번호)는 흐리게 처리한 화면
+const appProcurePages = toPages(import.meta.glob<string>('../assets/works/app-procure/*.jpg', { eager: true, import: 'default' }))
 import print01 from '@/assets/works/print-01.jpg'
 import print02 from '@/assets/works/print-02.jpg'
 import detail01 from '@/assets/works/detail-01.jpg'
@@ -224,6 +230,8 @@ export interface ProjectItem {
   group?: string
   /** PPT처럼 페이지 묶음이 있는 작업. 첫 장이 표지 */
   pages?: string[]
+  /** 실제 운영 중인 사이트 */
+  href?: string
 }
 
 export interface ProjectInfo {
@@ -258,6 +266,27 @@ export const PROJECTS: ProjectInfo[] = [
       { title: '케이사인 반응형 웹앱 홈페이지' },
       { title: '외교부 행정전자서명인증센터 반응형 웹앱 홈페이지' },
       { title: '반응형 웹앱 홈페이지' },
+      {
+        title: 'S&I 홈페이지 지속가능경영 디자인 · 퍼블리싱',
+        sub: '웹 디자인 · 퍼블리싱 · PC 1920 / MO 375 — 방향과 목표, 환경·사회·윤리경영, 정보보안까지 ESG 콘텐츠를 PC와 모바일 반응형으로 디자인하고 퍼블리싱했습니다.',
+        pages: webSniPages,
+        href: 'https://www.sni.co.kr/',
+      },
+      {
+        title: 'OpenManager 7.0 모니터링 솔루션 UI 디자인 · 퍼블리싱',
+        sub: '자사 프로젝트 · 다크 테마 대시보드 — 대시보드, APM 서비스 맵, 서비스 요약 차트, 로그 화면까지 데이터가 많은 관제 화면을 다크 UI로 정리했습니다.',
+        pages: webOm7Pages,
+      },
+      {
+        title: 'SK브로드밴드 Cloud X User Portal 재구축',
+        sub: '반응형 웹앱 퍼블리싱 · PC / 태블릿 / 모바일 — 로그인, 개인 PC 현황, Cloud PC 신청 화면을 세 가지 해상도에 맞춰 반응형으로 퍼블리싱했습니다.',
+        pages: webSkbPages,
+      },
+      {
+        title: 'LG U+ Sales All 상담 페이지',
+        sub: '반응형 퍼블리싱 — 판매점 상담 홈 화면. 모바일 · 홈 · 가이드 카드형 메뉴와 공지 배너를 반응형 레이아웃으로 구현했습니다.',
+        pages: webLguPages,
+      },
     ],
     image: web01,
     thumbs: [web02],
@@ -271,7 +300,16 @@ export const PROJECTS: ProjectInfo[] = [
     labelEn: 'APP PLANNING & DESIGN',
     title: ['APP PLANNING', '& DESIGN'],
     role: '앱 기획 · UX/UI 디자인',
-    items: [{ title: '바니마니 – 인사급여관리앱 기획, 디자인' }, { title: '그라운드케이 출퇴근 셔틀버스 앱 디자인' }],
+    items: [
+      { title: '바니마니 – 인사급여관리앱 기획, 디자인' },
+      { title: '그라운드케이 출퇴근 셔틀버스 앱 디자인' },
+      {
+        title: '공공 전자조달 모바일 앱 UI 디자인',
+        sub: '모바일 · 360 · 27화면 — 조달계획·입찰공고·계약 정보를 모바일에서 조회하는 공공 전자조달 앱. 빠른 검색, 카드형 목록, 기간 선택 바텀시트, 탭 상세 화면을 컴포넌트 기반으로 설계했습니다. (보안상 실제 데이터는 흐리게 처리)',
+        // 첫 장은 여러 화면을 모은 목업, 이후 화면별 상세
+        pages: [appProcureMockup, ...appProcurePages],
+      },
+    ],
     image: app01,
     thumbs: [app02],
     cardHeight: 420,
@@ -327,7 +365,7 @@ export const PROJECTS: ProjectInfo[] = [
       {
         title: 'NPO 기반 Cloud 운영 혁신 AX 제안',
         sub: '제안 발표 자료 · 16:9 · 13p — AI Incident Assistant 기반 장애 대응 혁신 제안. 다크 커버와 화이트 본문의 대비, 레드 포인트로 문제와 성과 지표를 선명하게 전달합니다.',
-        pages: [pptNpoCover, pptNpo01],
+        pages: pptNpoPages,
       },
       {
         title: 'IT 업계의 AI 활용과 하네스 엔지니어링',
@@ -337,7 +375,7 @@ export const PROJECTS: ProjectInfo[] = [
       {
         title: 'IT 운영유지보수(O&M) 효율화 전략',
         sub: '전략 보고서 · 16:9 · 6p — 멀티 벤더 서비스와 AIOps를 통한 운영 혁신 전략 보고서. 여백 중심의 레이아웃으로 현황·방향·전략을 간결하게 정리했습니다.',
-        pages: [pptOmCover, pptOm01],
+        pages: pptOmPages,
       },
     ],
     image: pptJgPages[0],
@@ -359,6 +397,12 @@ export const PROJECTS: ProjectInfo[] = [
       { title: '(주)모드니코퍼레이션 회사소개 리플렛', group: '리플렛 / 브로셔' },
       { title: '2024 가을 고양가구 박람회', group: '리플렛 / 브로셔' },
       { title: '바니마니 – 앱 소개 브로셔', group: '리플렛 / 브로셔' },
+      {
+        title: 'NH선물 2027 히스토리 차트북 인포그래픽',
+        group: '리플렛 / 브로셔',
+        sub: '브로셔 인포그래픽 · A3 · 표지·목차 + 27개 지표 — 지수·금리·환율·원자재의 수십 년 흐름을 시대별 이벤트와 함께 한 장의 인포그래픽 차트로 정리했습니다.',
+        pages: printNhPages,
+      },
       { title: '금산군 활활 페스타 축제 포스터', group: '배너 / 포스터' },
       { title: 'PIWU 중화요리 스탠드 배너', group: '배너 / 포스터' },
       { title: '동죽칼국수 배너', group: '배너 / 포스터' },

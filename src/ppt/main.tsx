@@ -2,25 +2,15 @@ import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@/styles/global.scss'
 import { PROFILE, PROJECTS, type ProjectItem } from '@/data/portfolio'
-import { useReveal } from '@/hooks/useReveal'
-import { Footer } from '@/components/layout/Footer/Footer'
-import { ScrollTop } from '@/components/ui/ScrollTop/ScrollTop'
-import { SectionLabel } from '@/components/ui/SectionLabel/SectionLabel'
 import { Lightbox, type LightboxImage } from '@/components/ui/Lightbox/Lightbox'
-import s from './PptPage.module.scss'
+import { Showcase, icon, num, type FlowStep } from '@/showcase/Showcase'
+import s from '@/showcase/Showcase.module.scss'
 
 // PPT 의뢰자에게 보내는 페이지: 메인 데이터의 PPT 항목만 보여준다
 const ppt = PROJECTS.find((p) => p.id === 'ppt')!
 const decks = ppt.items.filter((it) => it.pages)
-const num = (n: number) => String(n + 1).padStart(2, '0')
 
-const icon = (d: string) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d={d} />
-  </svg>
-)
-
-const FLOW = [
+const FLOW: FlowStep[] = [
   {
     tag: 'AI',
     title: '구성 · 초안',
@@ -44,7 +34,7 @@ const FLOW = [
   },
 ]
 
-type View ={ images: LightboxImage[]; index: number }
+type View = { images: LightboxImage[]; index: number }
 
 function Deck({ deck, n, onZoom }: { deck: ProjectItem; n: number; onZoom: (v: View) => void }) {
   const [cur, setCur] = useState(0)
@@ -100,78 +90,45 @@ function Deck({ deck, n, onZoom }: { deck: ProjectItem; n: number; onZoom: (v: V
 }
 
 function PptPage() {
-  useReveal()
   const [view, setView] = useState<View | null>(null)
 
   return (
-    <>
-      <a href="../" className={s.home}>
-        다른 디자인 보러가기 →
-      </a>
-      <main className={s.page}>
-        <header className={s.head}>
-          <SectionLabel>{ppt.labelEn}</SectionLabel>
-          <h1 className={s.title}>
-            {ppt.title[0]}
-            <br />
-            {ppt.title[1]}
-          </h1>
-          <p className={s.lead}>
-            {PROFILE.nameEn} · 제안서 · 보고서 · 회사소개서 · 이러닝 디자인
-          </p>
-          <p className={s.notice}>
-            여기에 소개한 작업 외에도 다수의 PPT를 디자인했으나,
-            <br />
-            이러닝, 국가 프로젝트 등 고객사 보안 정책에 따라 공개가 어려운 작업은 포함하지 않았습니다.
-          </p>
-        </header>
-
-        {/* 작업 방식: AI + Figma로 빠르게 많은 페이지 제작 */}
-        <section className={s.flow} aria-label="작업 방식">
-          <p className={s.flowHead}>
-            <strong>AI × Figma</strong>로 짧은 시간 안에 많은 페이지를 일관된 품질로 제작합니다
-          </p>
-          <ol className={s.steps}>
-            {FLOW.map((f, i) => (
-              <li key={f.title} className={s.step}>
-                <span className={s.stepTop}>
-                  <span className={s.stepIcon}>{f.icon}</span>
-                  <span className={s.stepNum}>{num(i)}</span>
-                </span>
-                <span className={s.stepTag}>{f.tag}</span>
-                <strong className={s.stepTitle}>{f.title}</strong>
-                <span className={s.stepDesc}>{f.desc}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* 표지 목록: 누르면 해당 작업으로 이동 */}
-        <nav className={s.index} aria-label="PPT 작업 목록">
-          {decks.map((d, n) => (
-            <a key={d.title} href={`#deck-${num(n)}`} className={s.cover}>
-              <img src={d.pages![0]} alt="" loading="eager" />
-              <span className={s.coverText}>
-                <span className={s.coverNum}>{num(n)}</span>
-                {d.title}
-              </span>
-            </a>
-          ))}
-        </nav>
-
+    <Showcase
+      label={ppt.labelEn}
+      title={ppt.title}
+      lead={`${PROFILE.nameEn} · 제안서 · 보고서 · 회사소개서 · 이러닝 디자인`}
+      notice={['여기에 소개한 작업 외에도 다수의 PPT를 디자인했으나,', '이러닝, 국가 프로젝트 등 고객사 보안 정책에 따라 공개가 어려운 작업은 포함하지 않았습니다.']}
+      flowHead={
+        <>
+          <strong>AI × Figma</strong>로 짧은 시간 안에 많은 페이지를 일관된 품질로 제작합니다
+        </>
+      }
+      flow={FLOW}
+    >
+      {/* 표지 목록: 누르면 해당 작업으로 이동 */}
+      <nav className={s.index} aria-label="PPT 작업 목록">
         {decks.map((d, n) => (
-          <Deck key={d.title} deck={d} n={n} onZoom={setView} />
+          <a key={d.title} href={`#deck-${num(n)}`} className={s.cover}>
+            <img src={d.pages![0]} alt="" loading="eager" />
+            <span className={s.coverText}>
+              <span className={s.coverNum}>{num(n)}</span>
+              {d.title}
+            </span>
+          </a>
         ))}
-      </main>
-      <Footer />
-      <ScrollTop />
+      </nav>
+
+      {decks.map((d, n) => (
+        <Deck key={d.title} deck={d} n={n} onZoom={setView} />
+      ))}
+
       <Lightbox
         images={view?.images ?? []}
         index={view?.index ?? null}
         onClose={() => setView(null)}
         onChange={(i) => setView((v) => v && { ...v, index: i })}
       />
-    </>
+    </Showcase>
   )
 }
 

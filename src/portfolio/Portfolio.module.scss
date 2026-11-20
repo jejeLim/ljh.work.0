@@ -1,0 +1,2053 @@
+// Figma: Renewal v4 (Desktop 1440 · Tablet 768 · Mobile 390)
+$p-ink: #111;
+$p-dark: #111113;
+$p-paper: #e6e3de;
+$p-light: #f6f5f2;
+$p-chip: #f7f5f2;
+$p-muted: #66666e;
+$p-faint: #9c9ca3;
+$p-line: #dedcd8;
+$p-violet: #9c89e8;
+$p-violet-2: #b3a4f0;
+$p-violet-3: #7b63e0;
+$p-cream: #f3f1ed;
+$serif: 'Cormorant Garamond', 'Noto Serif KR', serif;
+$sans: 'Noto Sans KR', system-ui, sans-serif;
+
+// 콘텐츠 폭 1200 · 좌우 여백 120 / 40 / 20
+@mixin p-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 120px;
+
+  @include tablet {
+    padding-inline: 40px;
+  }
+  @include mobile {
+    padding-inline: 20px;
+  }
+}
+@mixin p-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: 120px;
+
+  @include tablet {
+    padding-block: 96px;
+  }
+  @include mobile {
+    padding-block: 72px;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.inner {
+  @include p-inner;
+  position: relative;
+}
+
+// ── Header ──────────────────────────────────────────────
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px max(120px, calc((100% - 1200px) / 2));
+  background: rgba($white, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    padding 0.4s $ease-out,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+
+  @include tablet {
+    padding: 18px 40px;
+  }
+  @include mobile {
+    padding: 14px 20px;
+  }
+}
+
+.headerScrolled {
+  padding-block: 16px;
+  background: rgba($white, 0.78);
+  box-shadow: 0 1px 0 rgba($p-ink, 0.06);
+
+  @include mobile {
+    padding-block: 12px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-ink;
+
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+  font-family: $serif;
+  font-size: 18px;
+  color: $p-ink;
+
+  a {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s $ease-out;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.headerCta {
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: $p-ink;
+  color: $white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition:
+    background 0.3s ease,
+    transform 0.3s $ease-out;
+
+  &:hover {
+    background: $p-violet-3;
+    transform: translateY(-1px);
+  }
+
+  @include tablet {
+    margin-left: auto;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  @include mobile {
+    display: none;
+  }
+}
+
+.menuBtn {
+  display: none;
+  position: relative;
+  width: 26px;
+  height: 26px;
+
+  i {
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    height: 1.2px;
+    background: $p-ink;
+    transition:
+      transform 0.35s $ease-out,
+      opacity 0.2s ease;
+
+    &:nth-child(1) {
+      top: 7px;
+    }
+    &:nth-child(2) {
+      top: 12.5px;
+    }
+    &:nth-child(3) {
+      top: 18px;
+    }
+  }
+
+  @include tablet {
+    display: block;
+  }
+  @include mobile {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// 태블릿 · 모바일 메뉴: 헤더 아래로 펼친다
+@include tablet {
+  .headerOpen {
+    background: rgba($white, 0.92);
+
+    .nav {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 40px 20px;
+      background: rgba($white, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 24px;
+      animation: menuIn 0.4s $ease-out;
+
+      a {
+        padding-block: 10px;
+        border-bottom: 1px solid rgba($p-ink, 0.08);
+      }
+    }
+
+    .menuBtn i {
+      &:nth-child(1) {
+        transform: translateY(5.5px) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        transform: translateY(-5.5px) rotate(-45deg);
+      }
+    }
+  }
+}
+@include mobile {
+  .headerOpen .nav {
+    padding-inline: 20px;
+  }
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+// ── Eyebrow (● 01 Skills & Tools) ───────────────────────
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $serif;
+  font-size: 18px;
+  line-height: 1.2;
+  color: $p-muted;
+
+  @include tablet {
+    font-size: 16px;
+  }
+}
+.eyebrowDark {
+  color: #a6a6ad;
+}
+.eyebrowLabel {
+  margin-left: 0.9em;
+}
+
+// ── Hero ────────────────────────────────────────────────
+.hero {
+  position: relative;
+  height: min(calc(100vw * 1340 / 1440), 1340px);
+  overflow: hidden;
+  background: $p-paper;
+
+  @include tablet {
+    height: calc(100vw * 830 / 768);
+  }
+  @include mobile {
+    height: calc(100vw * 440 / 390);
+  }
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  height: calc(100% * 1400 / 1340);
+  object-fit: cover;
+  object-position: center top;
+  animation: heroIn 1.8s $ease-out both;
+
+  @include tablet {
+    height: calc(100% * 900 / 830);
+  }
+  @include mobile {
+    height: calc(100% * 480 / 440);
+  }
+}
+
+.heroFade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba($p-paper, 0), rgba($p-paper, 0.25) 60%, $p-paper);
+
+  @include tablet {
+    height: 280px;
+  }
+  @include mobile {
+    height: 200px;
+  }
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+// ── Skills & Tools ──────────────────────────────────────
+.skills {
+  background: $p-paper;
+  padding-bottom: 140px;
+
+  @include tablet {
+    padding-bottom: 96px;
+  }
+  @include mobile {
+    padding-bottom: 72px;
+  }
+}
+
+// 마우스로 끄는 가로 스크롤 영역
+.strip,
+.tabs,
+.siteGrid {
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+.strip,
+.tabs {
+  cursor: grab;
+}
+.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none !important;
+  user-select: none;
+
+  * {
+    pointer-events: none;
+  }
+}
+
+.skillsInner {
+  @include p-inner;
+  display: flex;
+  gap: 96px;
+  align-items: flex-start;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 56px;
+  }
+  @include mobile {
+    gap: 40px;
+  }
+}
+
+.skillsLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 480px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 100%;
+    gap: 24px;
+  }
+  @include mobile {
+    gap: 20px;
+  }
+}
+
+.career {
+  font-family: $serif;
+  font-weight: 300;
+  white-space: nowrap;
+
+  p {
+    display: flex;
+    align-items: baseline;
+  }
+  em {
+    font-style: italic;
+  }
+}
+
+.careerNum {
+  display: inline-block;
+}
+
+.careerYears {
+  gap: 14px;
+  font-size: 168px;
+  line-height: 1;
+  color: $p-violet;
+
+  em {
+    font-size: 56px;
+  }
+
+  @include tablet {
+    gap: 10px;
+    font-size: 140px;
+
+    em {
+      font-size: 48px;
+    }
+  }
+  @include mobile {
+    font-size: 104px;
+
+    em {
+      font-size: 36px;
+    }
+  }
+}
+
+.careerMonths {
+  gap: 12px;
+  padding-left: 96px;
+  font-size: 96px;
+  line-height: 1;
+  color: $p-ink;
+
+  em {
+    font-size: 40px;
+    color: $p-muted;
+  }
+
+  @include tablet {
+    gap: 8px;
+    padding-left: 77px;
+    font-size: 84px;
+
+    em {
+      font-size: 36px;
+    }
+  }
+  @include mobile {
+    padding-left: 57px;
+    font-size: 60px;
+
+    em {
+      font-size: 26px;
+    }
+  }
+}
+
+.skillsDesc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: $p-muted;
+  word-break: keep-all;
+
+  @include tablet {
+    font-size: 14px;
+  }
+}
+
+.domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  li {
+    padding: 7px 14px;
+    border: 1px solid $p-ink;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $p-ink;
+  }
+
+  @include tablet {
+    gap: 6px;
+
+    li {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+}
+
+.skillsRight {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include tablet {
+    width: 100%;
+    gap: 24px;
+  }
+  @include mobile {
+    gap: 20px;
+  }
+}
+
+.subHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+
+  h2 {
+    font-family: $serif;
+    font-size: 36px;
+    font-style: italic;
+    line-height: 1.2;
+    color: $p-ink;
+
+    @include tablet {
+      font-size: 32px;
+    }
+    @include mobile {
+      font-size: 28px;
+    }
+  }
+  p {
+    font-size: 13px;
+    line-height: 1.2;
+    color: $p-muted;
+  }
+
+  @include mobile {
+    > p:not(.legend) {
+      display: none;
+    }
+  }
+}
+
+.subHeadTools {
+  @include tablet {
+    margin-top: 24px;
+  }
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 20px;
+  }
+}
+
+.legend {
+  color: $p-faint !important;
+  white-space: nowrap;
+
+  @include tablet {
+    font-size: 12px !important;
+  }
+}
+
+.skillList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+
+  li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding-block: 22px;
+    border-top: 1px solid $p-ink;
+
+    img {
+      flex-shrink: 0;
+    }
+  }
+
+  @include tablet {
+    column-gap: 24px;
+
+    li {
+      gap: 14px;
+      padding-block: 19px;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skillName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  line-height: 1.25;
+
+  strong {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: $p-ink;
+  }
+  em {
+    font-family: $serif;
+    font-size: 17px;
+    font-style: italic;
+    color: $p-muted;
+  }
+
+  @include tablet {
+    column-gap: 8px;
+
+    strong {
+      font-size: 17px;
+    }
+    em {
+      font-size: 16px;
+    }
+  }
+}
+
+.skillDesc {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: $p-muted;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include tablet {
+    gap: 8px;
+  }
+}
+
+.tool {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 999px;
+  background: $p-chip;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity $dur $ease-out,
+    transform $dur $ease-out;
+
+  &:hover {
+    background: $white;
+    box-shadow: 0 8px 20px -10px rgba($p-ink, 0.25);
+  }
+}
+
+.toolLogo {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $white;
+  overflow: hidden;
+}
+
+// 로고 이미지는 바깥 여백이 포함돼 있어 161%로 키워 가운데만 보여준다
+.toolImg {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: -30.65%;
+    left: -30.65%;
+    width: 161.29%;
+    max-width: none;
+    height: 161.29%;
+  }
+}
+.toolImgFit img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.toolName {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-ink;
+  white-space: nowrap;
+}
+
+.toolLevel {
+  font-family: $serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: $p-violet;
+}
+
+// ── Works ───────────────────────────────────────────────
+.works {
+  @include p-section;
+  background: $p-dark;
+  color: $p-cream;
+}
+
+.worksHead {
+  @include p-inner;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    @include mobile {
+      gap: 16px;
+    }
+  }
+}
+
+.worksTitle {
+  font-family: $serif;
+  font-size: 88px;
+  font-weight: 300;
+  line-height: 1;
+  color: $p-cream;
+
+  em {
+    font-style: italic;
+    color: $p-violet-2;
+  }
+
+  @include tablet {
+    font-size: 60px;
+  }
+  @include mobile {
+    font-size: 42px;
+  }
+}
+
+.arrows {
+  display: flex;
+  gap: 10px;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #6e6e75;
+    border-radius: 50%;
+    font-family: Inter, $sans;
+    font-size: 20px;
+    color: $p-cream;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s $ease-out;
+
+    &:last-child {
+      border-color: $p-cream;
+      background: $p-cream;
+      color: $p-dark;
+    }
+    &:hover {
+      border-color: $p-violet-2;
+      background: $p-violet-2;
+      color: $p-dark;
+      transform: scale(1.06);
+    }
+  }
+
+  @include tablet {
+    gap: 8px;
+
+    button {
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
+    }
+  }
+  @include mobile {
+    display: none;
+  }
+}
+
+// 탭 줄과 카드 줄은 왼쪽 여백만 맞추고 오른쪽 끝까지 흐른다
+$strip-pad: max(120px, calc((100% - 1200px) / 2));
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin-top: 48px;
+  padding-inline: $strip-pad 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include tablet {
+    margin-top: 36px;
+    padding-inline: 40px;
+  }
+  @include mobile {
+    margin-top: 28px;
+    padding-inline: 20px;
+  }
+}
+
+.tab {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border: 1px solid #2e2e33;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: $p-cream;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+
+  span {
+    margin-left: 0.5em;
+    font-family: $serif;
+    font-size: 17px;
+  }
+
+  &:hover {
+    border-color: #6e6e75;
+  }
+
+  @include tablet {
+    padding: 8px 15px;
+    font-size: 13px;
+
+    span {
+      font-size: 15px;
+    }
+  }
+}
+.tabActive,
+.tabActive:hover {
+  border-color: $p-cream;
+  background: $p-cream;
+  color: $p-dark;
+}
+
+.strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  // 선택 테두리(outline-offset)가 가로 스크롤 영역에 잘리지 않게 위아래 여유
+  margin-top: 42px;
+  padding: 6px $strip-pad;
+  overflow-x: auto;
+  scroll-padding-inline: $strip-pad;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include tablet {
+    gap: 20px;
+    margin-top: 30px;
+    padding-inline: 40px;
+    scroll-padding-inline: 40px;
+  }
+  @include mobile {
+    gap: 16px;
+    margin-top: 22px;
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+  }
+}
+
+$card-h: 440px;
+$card-h-t: 340px;
+$card-h-m: 260px;
+
+.card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  // 가장 넓은 자식(대표 이미지 · 썸네일 줄)이 카드 폭이 된다
+  width: min-content;
+  scroll-snap-align: start;
+
+  @include tablet {
+    gap: 12px;
+  }
+}
+
+.cardMain {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #1c1c20;
+  cursor: zoom-in;
+
+  img {
+    transition: transform 0.9s $ease-out;
+  }
+  &:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.cardCover {
+  height: $card-h;
+  width: auto;
+  // 썸네일 줄이 더 넓으면 카드 폭에 맞춰 채운다
+  min-width: max(320px, 100%);
+  max-width: 800px;
+  object-fit: cover;
+
+  @include tablet {
+    height: $card-h-t;
+    min-width: max(256px, 100%);
+    max-width: 604px;
+  }
+  @include mobile {
+    height: $card-h-m;
+    min-width: max(200px, 100%);
+    max-width: 462px;
+  }
+}
+
+.cardActive {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.cardCount {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba($p-dark, 0.82);
+  font-family: $serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $white;
+
+  @include tablet {
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+}
+
+.cardThumbs {
+  display: flex;
+  gap: 8px;
+
+  @include tablet {
+    gap: 6px;
+  }
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 48px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #2c2c31;
+  opacity: 0.7;
+  transition:
+    opacity 0.3s ease,
+    border-color 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover {
+    opacity: 1;
+  }
+
+  @include tablet {
+    width: 52px;
+    height: 40px;
+  }
+  @include mobile {
+    width: 44px;
+    height: 34px;
+    border-radius: 6px;
+  }
+}
+.thumbActive {
+  border-color: $white;
+  opacity: 1;
+}
+.thumbMore {
+  font-family: $serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: $white;
+  opacity: 1;
+
+  &:hover {
+    background: #3a3a40;
+  }
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: $serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-cream;
+  white-space: nowrap;
+
+  span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #a6a6ad;
+  }
+
+  @include tablet {
+    gap: 8px;
+    font-size: 22px;
+
+    span {
+      font-size: 15px;
+    }
+  }
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.cardSub {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a6a6ad;
+  word-break: keep-all;
+
+  @include tablet {
+    font-size: 13px;
+  }
+}
+
+.progress {
+  position: relative;
+  height: 2px;
+  margin: 48px $strip-pad 0;
+  overflow: hidden;
+  background: #2e2e33;
+
+  span {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: $p-cream;
+    transition:
+      left 0.15s linear,
+      width 0.3s ease;
+  }
+
+  @include tablet {
+    margin: 36px 40px 0;
+  }
+  @include mobile {
+    margin: 28px 20px 0;
+  }
+}
+
+// ── 선택한 분야의 작업 목록 ────────────────────────────
+.cardSelected .cardMain {
+  outline: 2px solid $p-violet-2;
+  outline-offset: 4px;
+}
+
+.detailWrap {
+  margin: 56px $strip-pad 0;
+  scroll-margin-top: 120px;
+
+  @include tablet {
+    margin: 44px 40px 0;
+  }
+  @include mobile {
+    margin: 36px 20px 0;
+    scroll-margin-top: 88px;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.5s ease both;
+}
+
+.detailHead {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px 20px;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px;
+  }
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  color: $p-cream;
+  cursor: zoom-in;
+
+  strong {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+  > span:last-child:not(.detailImg) {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #a6a6ad;
+    word-break: keep-all;
+  }
+  &:hover img {
+    transform: scale(1.04);
+  }
+
+  @include mobile {
+    strong {
+      font-size: 13px;
+    }
+  }
+}
+
+.detailImg {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #1c1c20;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // 긴 웹 화면은 윗부분부터 보이게
+    object-position: center top;
+    transition: transform 0.9s $ease-out;
+  }
+}
+
+.detailCount {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba($p-dark, 0.82);
+  font-family: $serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $white;
+}
+
+.detailList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0 32px;
+  border-top: 1px solid #2e2e33;
+
+  li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #2e2e33;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $p-cream;
+    word-break: keep-all;
+  }
+  span {
+    font-family: $serif;
+    font-size: 15px;
+    color: #a6a6ad;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+
+    li {
+      font-size: 13px;
+    }
+  }
+}
+
+// ── 공통 섹션 머리 ──────────────────────────────────────
+.secHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    @include tablet {
+      gap: 14px;
+    }
+  }
+}
+
+.secTitle {
+  font-family: $serif;
+  font-size: 52px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: $p-ink;
+
+  @include mobile {
+    font-size: 40px;
+  }
+}
+
+.secDesc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: $p-muted;
+  word-break: keep-all;
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 18px;
+  border: 1px solid $p-line;
+  border-radius: 999px;
+  background: $white;
+  font-family: $serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-ink;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s $ease-out;
+
+  span {
+    font-family: $sans;
+    font-size: 14px;
+    transition: transform 0.3s $ease-out;
+  }
+  &:hover {
+    transform: translateY(-2px);
+
+    span {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @include tablet {
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+}
+.pillDark {
+  border-color: $p-ink;
+  background: $p-ink;
+  color: $white;
+
+  &:hover {
+    border-color: $p-violet-3;
+    background: $p-violet-3;
+  }
+}
+// Pill 컴포넌트(KakaoContact) 기본 스타일보다 우선하도록 두 클래스로 지정
+.pill.pillLight {
+  gap: 4px;
+  padding: 9px 18px;
+  border-color: $white;
+  background: $white;
+  font-family: $sans;
+  font-size: 15px;
+  line-height: 1.2;
+  color: $p-ink;
+
+  &:hover {
+    border-color: $p-violet-2;
+    background: $p-violet-2;
+  }
+}
+.pillLight {
+  border-color: $white;
+  font-family: $sans;
+  font-size: 15px;
+
+  span {
+    font-size: 15px;
+  }
+  &:hover {
+    background: $p-violet-2;
+    border-color: $p-violet-2;
+  }
+}
+
+.glow {
+  position: absolute;
+  pointer-events: none;
+  background: center / 100% 100% no-repeat;
+}
+
+// ── Websites ────────────────────────────────────────────
+.websites {
+  @include p-section;
+  background: $p-paper;
+}
+
+.glowWebTl {
+  left: -440px;
+  top: -240px;
+  width: 1180px;
+  height: 880px;
+  background-image: url('@/assets/portfolio/glow-web-tl.svg');
+}
+.glowWebBr {
+  right: -380px;
+  bottom: -258px;
+  width: 940px;
+  height: 740px;
+  background-image: url('@/assets/portfolio/glow-web-br.svg');
+}
+
+.liveAll {
+  @include mobile {
+    display: none;
+  }
+}
+
+.featured {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-top: 48px;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin-top: 40px;
+  }
+  @include mobile {
+    margin-top: 28px;
+  }
+}
+
+.featuredShot {
+  flex: 0 0 60%;
+  aspect-ratio: 720 / 500;
+  overflow: hidden;
+  border: 1px solid #e3e0db;
+  border-radius: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 1.2s $ease-out;
+  }
+  &:hover img {
+    transform: scale(1.03);
+  }
+
+  @include tablet {
+    aspect-ratio: 688 / 478;
+    border-radius: 16px;
+  }
+  @include mobile {
+    aspect-ratio: 350 / 243;
+    border-radius: 14px;
+  }
+}
+
+.featuredCopy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  @include tablet {
+    gap: 18px;
+  }
+}
+
+.featuredEyebrow {
+  font-family: $serif;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: $p-violet;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.featuredName {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: $serif;
+
+  h3 {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: $p-ink;
+  }
+  p {
+    font-size: 20px;
+    color: $p-muted;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+
+    h3 {
+      font-size: 44px;
+    }
+    p {
+      font-size: 18px;
+      font-style: italic;
+    }
+  }
+  @include mobile {
+    h3 {
+      font-size: 36px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+.featuredDesc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: $p-muted;
+  word-break: keep-all;
+
+  @include tablet {
+    font-size: 14px;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  li {
+    padding: 4px 10px;
+    border: 1px solid $p-line;
+    border-radius: 999px;
+    font-family: $serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: $p-muted;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.featuredActions {
+  display: flex;
+  gap: 8px;
+  padding-top: 8px;
+
+  @include tablet {
+    padding-top: 0;
+  }
+}
+
+.siteGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 24px;
+  margin-top: 48px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 24px;
+    margin-top: 40px;
+  }
+  // 모바일은 가로로 넘겨 본다
+  @include mobile {
+    display: flex;
+    gap: 14px;
+    margin: 28px -20px 0;
+    padding: 0 20px 4px;
+    overflow-x: auto;
+    // 나타나는 효과(translateY) 때문에 세로 스크롤바가 생기지 않게
+    overflow-y: hidden;
+    cursor: grab;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include tablet {
+    gap: 10px;
+  }
+  @include mobile {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+  }
+}
+
+.siteShot {
+  aspect-ratio: 384 / 267;
+  overflow: hidden;
+  border: 1px solid #e3e0db;
+  border-radius: 16px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 1s $ease-out;
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  @include tablet {
+    aspect-ratio: 332 / 230;
+    border-radius: 14px;
+  }
+  @include mobile {
+    aspect-ratio: 260 / 180;
+    border-radius: 12px;
+  }
+}
+
+.siteName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $serif;
+
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $p-ink;
+
+    @include tablet {
+      font-size: 22px;
+    }
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+  span {
+    font-size: 15px;
+    color: $p-faint;
+
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.siteKicker {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-muted;
+
+  @include tablet {
+    font-size: 12px;
+  }
+}
+
+.siteDesc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: $p-muted;
+  word-break: keep-all;
+
+  @include tablet {
+    font-size: 13px;
+  }
+}
+
+.siteLinks {
+  display: flex;
+  gap: 12px;
+  font-family: $serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-ink;
+
+  a {
+    background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
+    transition: background-size 0.4s $ease-out;
+
+    &:hover {
+      background-size: 100% 1px;
+    }
+  }
+  a span {
+    font-family: $sans;
+    font-size: 13px;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+// ── About ───────────────────────────────────────────────
+.about {
+  @include p-section;
+  background: $p-light;
+}
+
+.glowAbout {
+  left: calc(50% - 40px);
+  top: 480px;
+  width: 1040px;
+  height: 740px;
+  background-image: url('@/assets/portfolio/glow-about.svg');
+}
+
+.aboutCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 56px;
+
+  @include tablet {
+    gap: 32px;
+    margin-top: 48px;
+  }
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 36px;
+  }
+}
+
+.colLabel {
+  padding-bottom: 16px;
+  font-family: $serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: $p-faint;
+
+  @include tablet {
+    padding-bottom: 12px;
+    font-size: 14px;
+  }
+}
+
+.careerList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 13px;
+  border-top: 1px solid $p-line;
+
+  @include tablet {
+    padding-block: 12px;
+  }
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $p-ink;
+
+  @include tablet {
+    gap: 8px;
+    font-size: 14px;
+  }
+}
+
+.period {
+  font-family: $serif;
+  font-size: 16px;
+  color: $p-muted;
+  white-space: nowrap;
+
+  @include tablet {
+    font-size: 15px;
+  }
+}
+
+.teamDesc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: $p-muted;
+  word-break: keep-all;
+
+  @include tablet {
+    font-size: 13px;
+  }
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-block: 20px 28px;
+
+  @include tablet {
+    gap: 12px;
+    padding-block: 12px;
+  }
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #f4f3f1;
+  box-shadow: inset 0 0 0 1px rgba($p-line, 0.6);
+
+  p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: $p-muted;
+  }
+
+  @include tablet {
+    padding: 16px 18px;
+  }
+}
+
+.memberHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+
+  strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: $p-ink;
+  }
+  span {
+    padding: 4px 10px;
+    border: 1px solid $p-line;
+    border-radius: 999px;
+    font-family: $serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: $p-muted;
+  }
+}
+
+.devBtn {
+  margin-block: 6px 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: $p-violet-3;
+  box-shadow: 0 6px 16px rgba(122, 99, 224, 0.35);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $white;
+  transition:
+    transform 0.3s $ease-out,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(122, 99, 224, 0.45);
+  }
+
+  @include tablet {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}
+
+.process {
+  margin-top: -6px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: $p-ink;
+  word-break: keep-all;
+
+  i {
+    font-style: normal;
+    color: $p-violet;
+  }
+
+  @include tablet {
+    font-size: 14px;
+  }
+}
+
+// ── Contact ─────────────────────────────────────────────
+.contact {
+  position: relative;
+  overflow: hidden;
+  padding-block: 120px 48px;
+  background: $p-ink;
+  color: $white;
+
+  @include tablet {
+    padding-block: 96px 32px;
+  }
+  @include mobile {
+    padding-block: 72px 32px;
+  }
+}
+
+.glowContact {
+  left: calc(50% - 180px);
+  top: -360px;
+  width: 1220px;
+  height: 920px;
+  background-image: url('@/assets/portfolio/glow-contact.svg');
+}
+
+.contactMain {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+.contactTitle {
+  font-family: $serif;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $white;
+
+  em {
+    font-style: normal;
+    color: #b9aaf0;
+  }
+
+  @include tablet {
+    max-width: 6em;
+    font-size: 66px;
+    line-height: 1.15;
+  }
+  @include mobile {
+    font-size: 46px;
+  }
+}
+
+.email {
+  font-family: $serif;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #a8a8ae;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $white;
+  }
+
+  @include tablet {
+    font-size: 32px;
+  }
+  @include mobile {
+    font-size: 26px;
+  }
+}
+
+.contactCta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+
+  p {
+    font-size: 14px;
+    color: #a8a8ae;
+  }
+
+  @include tablet {
+    align-items: flex-start;
+    gap: 20px;
+
+    p {
+      font-size: 13px;
+    }
+  }
+}
+
+.footBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid #333336;
+  font-family: $serif;
+  font-size: 15px;
+  color: #a8a8ae;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 64px;
+    padding-top: 20px;
+    font-size: 13px;
+  }
+  @include mobile {
+    margin-top: 48px;
+  }
+}
