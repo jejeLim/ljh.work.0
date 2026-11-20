@@ -344,8 +344,7 @@ $sans: 'Noto Sans KR', system-ui, sans-serif;
 
 // 마우스로 끄는 가로 스크롤 영역
 .strip,
-.tabs,
-.siteGrid {
+.tabs {
   img {
     -webkit-user-drag: none;
     user-select: none;
@@ -1139,6 +1138,60 @@ $card-h-m: 260px;
   }
 }
 
+// ── 모바일: 가로로 넘기지 않고 모든 분야를 한 화면에 ────────
+@include mobile {
+  .tabs {
+    flex-wrap: wrap;
+    overflow: visible;
+    cursor: auto;
+  }
+  .tab {
+    padding: 7px 13px;
+  }
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+    overflow: visible;
+    cursor: auto;
+  }
+  .card {
+    width: auto;
+    min-width: 0;
+    gap: 10px;
+  }
+  .cardCover {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .cardCount {
+    top: 8px;
+    left: 8px;
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+  // 썸네일 줄은 작업 목록에서 보이므로 생략
+  .cardThumbs,
+  .progress {
+    display: none;
+  }
+  .cardTitle {
+    flex-wrap: wrap;
+    gap: 2px 6px;
+    font-size: 17px;
+    white-space: normal;
+
+    span {
+      font-size: 13px;
+    }
+  }
+  .cardSub {
+    font-size: 12px;
+  }
+}
+
 // ── 선택한 분야의 작업 목록 ────────────────────────────
 .cardSelected .cardMain {
   outline: 2px solid $p-violet-2;
@@ -1590,23 +1643,9 @@ $card-h-m: 260px;
     gap: 36px 24px;
     margin-top: 40px;
   }
-  // 모바일은 가로로 넘겨 본다
   @include mobile {
-    display: flex;
-    gap: 14px;
-    margin: 28px -20px 0;
-    padding: 0 20px 4px;
-    overflow-x: auto;
-    // 나타나는 효과(translateY) 때문에 세로 스크롤바가 생기지 않게
-    overflow-y: hidden;
-    cursor: grab;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 20px;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    gap: 28px 12px;
+    margin-top: 28px;
   }
 }
 
@@ -1619,8 +1658,8 @@ $card-h-m: 260px;
     gap: 10px;
   }
   @include mobile {
-    flex: 0 0 260px;
-    scroll-snap-align: start;
+    gap: 8px;
+    min-width: 0;
   }
 }
 

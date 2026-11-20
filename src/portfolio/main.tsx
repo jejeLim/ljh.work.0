@@ -421,6 +421,11 @@ function Works({ onOpen }: { onOpen: (images: LightboxImage[], index: number) =>
     if (id !== 'all') setSel(id)
     const el = strip.current
     if (!el) return
+    // 모바일처럼 카드가 다 보이는 배치면 바로 작업 목록으로 내려간다
+    if (el.scrollWidth <= el.clientWidth) {
+      if (id !== 'all') detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return
+    }
     const card = id === 'all' ? null : el.querySelector<HTMLElement>(`[data-work="${id}"]`)
     el.scrollTo({ left: card ? card.offsetLeft - el.offsetLeft - parseFloat(getComputedStyle(el).paddingLeft) : 0, behavior: 'smooth' })
   }
@@ -475,8 +480,6 @@ function Works({ onOpen }: { onOpen: (images: LightboxImage[], index: number) =>
 }
 
 function Websites() {
-  const grid = useDragScroll<HTMLUListElement>()
-
   return (
     <section id="websites" className={s.websites}>
       <span className={cx(s.glow, s.glowWebTl)} aria-hidden="true" />
@@ -521,7 +524,7 @@ function Websites() {
           </div>
         </Reveal>
 
-        <ul ref={grid} className={s.siteGrid}>
+        <ul className={s.siteGrid}>
           {restSites.map((w, i) => (
             <Reveal as="li" key={w.id} delay={(i % 3) * 90} className={s.site}>
               <a href={w.href} target="_blank" rel="noopener noreferrer" className={s.siteShot} aria-label={`${w.name} 라이브 사이트 보기 (새 창)`}>
